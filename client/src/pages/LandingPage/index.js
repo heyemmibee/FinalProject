@@ -19,6 +19,7 @@ function LandingPage() {
                     <Col>
                     </Col>
                 </Row>
+                <br />
                 <Row>
                     <Col>
 
@@ -46,6 +47,4 @@ function LandingPage() {
 
 
 export default LandingPage
-
-
 
