@@ -1,0 +1,12 @@
+.Chat-header {
+  text-align: center;
+  color: white;
+}
+
+.Chat-clear-btn {
+  margin: 5px;
+}
+
+#messages {
+  height: 300px;
+}
