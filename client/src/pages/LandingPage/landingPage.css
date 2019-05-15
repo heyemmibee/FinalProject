@@ -32,3 +32,8 @@ background: linear-gradient(90deg, rgb(0, 0, 255), rgb(255, 165, 0));
     margin-left: auto;
     margin-right: auto;
 }
+#statement {
+    text-align: center;
+    color: white;
+    font-size: 25px;
+}
