@@ -24,7 +24,7 @@ class SignUp extends Component {
 		event.preventDefault()
 
 		//request to server to add a new username/password
-		axios.post('/user/', {
+		axios.post('/user', {
 			username: this.state.username,
 			password: this.state.password
 		})
@@ -39,7 +39,7 @@ class SignUp extends Component {
 					console.log('username already taken')
 				}
 			}).catch(error => {
-				console.log('signup error: ')
+				console.log('signup error buddy: ')
 				console.log(error)
 
 			})
