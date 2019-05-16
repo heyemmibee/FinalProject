@@ -15,12 +15,15 @@ class ChatApp extends React.Component {
     this.sendHandler = this.sendHandler.bind(this);
 
     // Connect to the server
-    //this.socket = io(config.api, { query: `username=${props.username}` }).connect();
+    let socket_url = window.location.href.split(window.location.pathname)[0];
+    this.socket = io(socket_url, {
+      query: `username=${props.username}`
+    }).connect();
 
     // Listen for messages from the server
-    //this.socket.on('server:message', message => {
-    //  this.addMessage(message);
-    //});
+    this.socket.on("server:message", message => {
+      this.addMessage(message);
+    });
   }
 
   sendHandler(message) {
@@ -30,7 +33,7 @@ class ChatApp extends React.Component {
     };
 
     // Emit the message to the server
-    //this.socket.emit('client:message', messageObject);
+    this.socket.emit('client:message', messageObject);
 
     messageObject.fromMe = true;
     this.addMessage(messageObject);
@@ -48,7 +51,7 @@ class ChatApp extends React.Component {
       <div className="container">
         <div className="card text-center">
           <div className="card-header">React Chat App</div>
-          <div className="card-body scroll-box">
+          <div className="card-body chat-card-body">
             <Messages messages={this.state.messages} />
           </div>
           <div className="card-footer">

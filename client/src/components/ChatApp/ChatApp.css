@@ -7,11 +7,12 @@
   overflow-y: scroll;
   overflow-x: hidden;
   height: 100%;
+  width: 100%;
   flex-grow: 1;
   padding: 20px;
 }
 
-.scroll-box {
+.chat-card-body {
   height: 500px;
   padding: 20px;
 }
@@ -53,10 +54,12 @@ h3 {
 }
 
 .message {
+  display: flex;
+  justify-content: flex-start;
   margin-bottom: 20px;
 }
 .message-body {
-  max-width: 80%;
+  max-width: 60%;
   display: inline-block;
   padding: 20px;
   background-color: #eee;
