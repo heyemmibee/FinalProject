@@ -1,6 +1,7 @@
 import React from "react";
 import "./profilePage.css";
-import { Container, Row, Col, Nav } from "react-bootstrap"
+import { Container, Row, Col, Nav } from "react-bootstrap";
+import {Link} from "react-router-dom"
 
 
 function ProfilePage() {
@@ -10,8 +11,8 @@ function ProfilePage() {
             <Nav className="navbar">
                 <h1 id="navTitle" ><img src="./images/hands2.png" width="45" height="45" class="d-inline-block align-top" alt="" />  HelpHub</h1>
                 <div className="ml-auto">
-                    <h4 className="links d-inline">Dashboard  </h4>
-                    <h4 className="links d-inline">|  Logout</h4>
+                    <Link class="link" to="/dashboard"><h4 className="links d-inline">Dashboard  </h4></Link>
+                    <Link class="link" to="/login"><h4 className="links d-inline">|  Logout</h4></Link>
                 </div>
             </Nav>
             <Container>
