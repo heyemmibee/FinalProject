@@ -3,10 +3,12 @@ import "./landingPage.css";
 // import Container from "../../components/container";
 // import Row from "../../components/row"
 // import Col from "../../components/Col"
-import { Container, Row, Col } from "react-bootstrap"
-import {Link} from "react-router-dom"
+
+import {Container,Row,Col} from "react-bootstrap";
+import { Route, Link } from 'react-router-dom';
 
 function LandingPage() {
+    
     return (
         <div>
             <Container>
