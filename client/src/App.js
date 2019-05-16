@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import ProfilePage from "./pages/ProfilePage";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
+import Dasboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <Route exact path="/profile" component={ProfilePage} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/login" component={LogIn} />
+        <Route exact path="/dashboard" component={Dasboard} />
+
       </div>
     </Router>
   );
