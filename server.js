@@ -5,7 +5,7 @@ const socketIo = require("socket.io")(server);
 const routes = require("./routes");
 
 //const mongoose = require("mongoose");
-const mongo = require("mongodb").MongoClient;
+//const mongo = require("mongodb").MongoClient;
 
 const PORT = process.env.PORT || 3001;
 
@@ -26,36 +26,53 @@ server.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-mongo.connect(process.env.MONGODB_URI || "mongodb://localhost", function(
-  err,
-  dbclient
-) {
-  if (err) {
-    throw err;
-  }
+console.log("Listen for socket connection ...");
 
-  let db = dbclient.db("chatterboxdb");
+// Setup socket.io
+socketIo.on("connection", socket => {
+  const username = socket.handshake.query.username;
+  console.log(`${Date().toString()} :: ${username} CONNECTED`);
 
-  console.log("Mongo connected ...");
+  socket.nickname = username;
+  socket.join("General");
+  console.log(`${Date().toString()} :: ${username} Joined General`);
 
-  console.log("Wait on client to connect.");
+  // Display chatroom roster.
+  // socketIo
+  //   .of("/")
+  //   .in("General")
+  //   .clients(function(error, clients) {
+  //     let numClients = clients.length;
+  //     console.log("Num Clients : " + numClients);
+  //     clients.forEach(function(client) {
+  //       console.log("Username: " + JSON.stringify(client));
+  //     });
+  //   });
+    displayClients(socketIo);
 
-  // Setup socket.io
-  socketIo.on("connection", socket => {
-    const username = socket.handshake.query.username;
-    console.log(`${Date().toString()} :: ${username} CONNECTED`);
+  socket.on("client:message", data => {
+    console.log(`${Date().toString()} :: ${data.username}: ${data.message}`);
 
-    socket.on("client:message", data => {
-      console.log(`${Date().toString()} :: ${data.username}: ${data.message}`);
-
-      // message received from client, now broadcast it to everyone else
-      socket.broadcast.emit("server:message", data);
-    });
-
-    socket.on("disconnect", () => {
-      console.log(`${Date().toString()} :: ${username} DISCONNECTED`);
-    });
+    displayClients(socketIo);
+    
+    // message received from client, now broadcast it to everyone else
+    socket.to("General").emit("server:message", data);
   });
 
-  console.log("Done waiting on client.");
+  socket.on("disconnect", () => {
+    console.log(`${Date().toString()} :: ${username} DISCONNECTED`);
+  });
 });
+
+displayClients = socketIo => {
+  socketIo
+    .of("/")
+    .in("General")
+    .clients(function(error, clients) {
+      let numClients = clients.length;
+      console.log("Num Clients : " + numClients);
+      clients.forEach(function(client) {
+        console.log("Username: " + JSON.stringify(client));
+      });
+    });
+};
