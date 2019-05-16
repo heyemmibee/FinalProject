@@ -5,7 +5,6 @@ import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
 import "./Login.css"
 import { Container, Row, Col } from "react-bootstrap";
-import {Link} from "react-router-dom"
 
 
 class Login extends Component {
