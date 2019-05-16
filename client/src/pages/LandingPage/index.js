@@ -4,6 +4,8 @@ import "./landingPage.css";
 // import Row from "../../components/row"
 // import Col from "../../components/Col"
 import {Container,Row,Col} from "react-bootstrap"
+import { Route, Link } from 'react-router-dom'
+
 
 function LandingPage() {
     return (
@@ -36,7 +38,10 @@ function LandingPage() {
                     <Col>
                     </Col>
                     <Col>
-                        <img alt="volunteers" src="./images/button(1).png" />
+                    <Link to="/signup" className="btn btn-link">
+                                    <span className="text-secondary"><img alt="volunteers" src="./images/button(1).png" />
+</span>
+				</Link>
                     </Col>
                 </Row>
             </Container>
