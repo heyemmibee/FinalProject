@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import "./Login.css"
-import { Container, Row, Col } from "react-bootstrap"
+import { Container, Row, Col } from "react-bootstrap";
+import {Link} from "react-router-dom"
 
 
 class Login extends Component {
@@ -119,7 +120,7 @@ class Login extends Component {
                                    <br />
 
                                 <img id="signup" src="./images/signup.png" />
-                                <img src="./images/login.png" onClick={this.handleSubmit}/>
+                                <Link to="/dashboard"><img src="./images/login.png" onClick={this.handleSubmit}/></Link>
 
                     
                                 </form>

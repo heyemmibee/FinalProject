@@ -29,7 +29,7 @@ function ProfilePage() {
                 <br />
                 <Row>
                     <Col>
-                    <h1 class="pageTitle">Profile Page</h1>
+                    <h1 class="pageTitle">Profile</h1>
                     </Col>
                 </Row>
                 <Row>
