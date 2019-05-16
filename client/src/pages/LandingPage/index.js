@@ -3,9 +3,12 @@ import "./landingPage.css";
 // import Container from "../../components/container";
 // import Row from "../../components/row"
 // import Col from "../../components/Col"
-import {Container,Row,Col} from "react-bootstrap"
+
+import {Container,Row,Col} from "react-bootstrap";
+import { Route, Link } from 'react-router-dom';
 
 function LandingPage() {
+    
     return (
         <div>
             <Container>
@@ -24,10 +27,16 @@ function LandingPage() {
                     <Col>
 
                         <h1 className="title">Connecting Non-Profits to Volunteers</h1>
+                        <br />
                     </Col>
                 </Row>
                 <Row>
-                    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <Col>
+                        <p id="statement">HelpHub is an opportunity for Volunteers, and Non-Profits to get connected and stay engaged. There is no gift like now, that’s why it’s called the present. Get involved today and find your way to making a positive impact.</p>
+                    </Col>
+                </Row>
+                <Row>
+                    <br /><br /><br /><br /><br /><br />
                 </Row>
                 <Row>
                     <Col>
@@ -36,7 +45,7 @@ function LandingPage() {
                     <Col>
                     </Col>
                     <Col>
-                        <img alt="volunteers" src="./images/button(1).png" />
+                        <Link to="/login" className> <img alt="volunteers" src="./images/button(1).png"/></Link>
                     </Col>
                 </Row>
             </Container>
