@@ -16,6 +16,7 @@ class Login extends Component {
         this.handleChange = this.handleChange.bind(this)
   
     }
+   
 
     handleChange(event) {
         this.setState({
@@ -99,7 +100,9 @@ class Login extends Component {
                                 type="submit">Login</button>
                                  <Link to="/signup" className="btn btn-link">
                                     <span className="text-secondary">sign up</span>
-				</Link>
+				                </Link>
+                                
+
                         </div>
                     </form>
                 </div>
