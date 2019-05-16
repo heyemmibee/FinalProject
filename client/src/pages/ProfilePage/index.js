@@ -1,12 +1,20 @@
 import React from "react";
 import "./profilePage.css";
-import { Container, Row, Col } from "react-bootstrap"
+import { Container, Row, Col, Nav } from "react-bootstrap";
+import {Link} from "react-router-dom"
 
 
 function ProfilePage() {
     return (
 
         <div>
+            <Nav className="navbar">
+                <h1 id="navTitle" ><img src="./images/hands2.png" width="45" height="45" class="d-inline-block align-top" alt="" />  HelpHub</h1>
+                <div className="ml-auto">
+                    <Link class="link" to="/dashboard"><h4 className="links d-inline">Dashboard  </h4></Link>
+                    <Link class="link" to="/login"><h4 className="links d-inline">|  Logout</h4></Link>
+                </div>
+            </Nav>
             <Container>
                 <Row>
                     <Col>
@@ -21,7 +29,7 @@ function ProfilePage() {
                 <br />
                 <Row>
                     <Col>
-                    <h1 class="pageTitle">Profile Page</h1>
+                    <h1 class="pageTitle">Profile</h1>
                     </Col>
                 </Row>
                 <Row>

@@ -3,19 +3,11 @@ body {
 background: linear-gradient(90deg, rgb(0, 0, 255), rgb(255, 165, 0));
 
 }
-label {
-    color: white;
+#navTitle {
+    float: left;
 }
-#submit {
-    float: right;
-}
-.input {
-    font-size: 20px;
-}
-.pageTitle {
-    text-align: center;
-    color: white;
-    font-size: 45px;
+.navbar {
+    background-color: rgba(211, 211, 211, 0.623);
 }
 .link {
     color: grey;
