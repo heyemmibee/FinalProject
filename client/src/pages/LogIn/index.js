@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
+
 import axios from 'axios'
 
 class Login extends Component {
@@ -95,6 +97,9 @@ class Login extends Component {
                                
                                 onClick={this.handleSubmit}
                                 type="submit">Login</button>
+                                 <Link to="/signup" className="btn btn-link">
+                                    <span className="text-secondary">sign up</span>
+				</Link>
                         </div>
                     </form>
                 </div>
