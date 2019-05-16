@@ -2,7 +2,6 @@ import React from "react";
 import "./profilePage.css";
 import { Container, Row, Col } from "react-bootstrap"
 
-
 function ProfilePage() {
     return (
 
@@ -29,23 +28,23 @@ function ProfilePage() {
                         <form>
                             <div className="form-group">
                                 <label for="name" className="input">Name</label>
-                                <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="John Doe" />
+                                <input type="name" class="form-control" id="profileName" placeholder="Michelle Obama" />
                             </div>
                             <div className="form-group">
-                                <label for="exampleFormControlInput1" className="input">Email address</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
+                                <label for="exampleFormControlInput1" className="input">Email Address</label>
+                                <input type="email" class="form-control" id="profileEmail" placeholder="name@example.com" />
                             </div>
                             <div className="form-group">
                                 <label for="Phone" className="input">Phone Number</label>
-                                <input type="phone" class="form-control" id="exampleFormControlInput1" placeholder="202-555-5555" />
+                                <input type="phone" class="form-control" id="profilePhone" placeholder="202-555-5555" />
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputCity" className="input">City</label>
-                                    <input type="text" class="form-control" id="inputCity" placeholder="Arlington" />
+                                    <input type="text" class="form-control" id="profileCity" placeholder="Arlington" />
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="inputState" className="input">State</label>
+                                    <label for="inputState" className="input" id="profileState">State</label>
                                     <select id="inputState" class="form-control">
                                         <option selected>Choose...</option>
                                         <option value="AK">Alaska</option>
@@ -104,12 +103,12 @@ function ProfilePage() {
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputZip" className="input">Zip</label>
-                                    <input type="text" class="form-control" id="inputZip" placeholder="22201"/>
+                                    <input type="text" class="form-control" id="profileZip" placeholder="22201"/>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label for="exampleFormControlSelect1" className="input">Amount Of Time That You Can Commit</label>
-                                <select className="form-control" id="exampleFormControlSelect1">
+                                <label for="exampleFormControlSelect1" className="input">~Time You Can Commit</label>
+                                <select className="form-control" id="profileAvailability">
                                     <option>0-5 hours/week</option>
                                     <option>5-10 hours/week</option>
                                     <option>10-15 hours/week</option>
@@ -129,15 +128,13 @@ function ProfilePage() {
                                 <Row>
                                     <Col>
                                         <div className="checkbox">
-                                            <label><input type="checkbox" value="" /> Cooking & Baking 
-</label>
+                                            <label><input type="checkbox" value="" /> Cooking & Baking </label>
                                         </div>
                                         <div className="checkbox">
-                                            <label><input type="checkbox" value="" /> Community Cleanups
-</label>
+                                            <label><input type="checkbox" value="" /> Community Cleanups </label>
                                         </div>
                                         <div className="checkbox">
-                                            <label><input type="checkbox" value="" /> Teaching & Training</label>
+                                            <label><input type="checkbox" value="" /> Teaching & Training </label>
                                         </div>
                                     </Col>
                                     <Col>
@@ -213,7 +210,7 @@ function ProfilePage() {
                 </Row >
                 <Row>
                     <Col></Col>
-                    <Col><img id="submit" src="./images/submit.png" /></Col>
+                    <Col><img id="submit" src="./images/submit.png" onClick={() => this.addProfile(profile._id)}/></Col>
 
                 </Row>
                 <br /> <br /> <br /> <br />
