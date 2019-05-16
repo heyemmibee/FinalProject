@@ -37,3 +37,19 @@ background: linear-gradient(90deg, rgb(0, 0, 255), rgb(255, 165, 0));
     color: white;
     font-size: 25px;
 }
+#loginTitle {
+    font-size: 45px;
+}
+#username {
+    width: 100%;
+}
+#signup {
+    margin: 15px;
+}
+#password {
+    width: 100%;
+}
+
+label {
+    font-size: 20px;
+}

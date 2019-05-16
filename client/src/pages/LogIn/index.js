@@ -3,6 +3,10 @@ import { Redirect } from 'react-router-dom'
 import { Route, Link } from 'react-router-dom'
 
 import axios from 'axios'
+import "./Login.css"
+import { Container, Row, Col } from "react-bootstrap";
+import {Link} from "react-router-dom"
+
 
 class Login extends Component {
     constructor() {
@@ -14,7 +18,7 @@ class Login extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
-  
+
     }
    
 
@@ -50,7 +54,7 @@ class Login extends Component {
             }).catch(error => {
                 console.log('login error: ')
                 console.log(error);
-                
+
             })
     }
 
@@ -60,6 +64,7 @@ class Login extends Component {
         } else {
             return (
                 <div>
+              {/*
                     <h4>Login</h4>
                     <form className="form-horizontal">
                         <div className="form-group">
@@ -106,6 +111,76 @@ class Login extends Component {
                         </div>
                     </form>
                 </div>
+*/}
+                    <Container>
+                        <Row>
+                            <Col>
+                            </Col>
+                            <Col>
+                                <img alt="logo" id="hands" className="center" src="./images/hands2.png" />
+                                <h1 id="title" className="title">HelpHub</h1>
+                            </Col>
+                            <Col>
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col>
+                                <h1 id="loginTitle" className="title">Login</h1>
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col></Col>
+                            <Col>
+                                <form>
+                                    <Row>
+                                        <Col>
+                                            <label htmlFor="username">Username</label>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <input id="username"
+                                                type="text"
+                                                id="username"
+                                                name="username"
+                                                placeholder="Username"
+                                                value={this.state.username}
+                                                onChange={this.handleChange}
+                                            />
+                                        </Col>
+                                    </Row>
+                                    <br />
+                                    <Row>
+                                        <Col>
+                                        <label className="form-label" htmlFor="password">Password: </label>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                        <input id="password"
+                                            placeholder="Password"
+                                            type="password"
+                                            name="password"
+                                            value={this.state.password}
+                                            onChange={this.handleChange}
+                                        />
+                                        </Col>
+                                   </Row>
+                                   <br />
+
+                                <img id="signup" src="./images/signup.png" />
+                                <Link to="/dashboard"><img src="./images/login.png" onClick={this.handleSubmit}/></Link>
+
+                    
+                                </form>
+                            </Col>
+                        <Col></Col>
+                        </Row>
+                    </Container>
+                </div >
+
             )
         }
     }

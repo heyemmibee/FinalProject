@@ -1,0 +1,14 @@
+body {
+    background: -webkit-linear-gradient(90deg, rgb(0, 0, 255), rgb(255, 165, 0));
+background: linear-gradient(90deg, rgb(0, 0, 255), rgb(255, 165, 0));
+
+}
+#navTitle {
+    float: left;
+}
+.navbar {
+    background-color: rgba(211, 211, 211, 0.623);
+}
+.link {
+    color: grey;
+}
