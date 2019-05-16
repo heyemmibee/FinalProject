@@ -3,7 +3,7 @@ import "./dashboard.css";
 import { Container, Row, Col, Nav } from "react-bootstrap";
 import {Link} from "react-router-dom"
 
-function Dasboard() {
+function Dashboard() {
     return (
         <div>
             <Nav className="navbar">
@@ -26,4 +26,4 @@ function Dasboard() {
 
 
 
-export default Dasboard
+export default Dashboard
