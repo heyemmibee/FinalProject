@@ -49,20 +49,21 @@ h3 {
 }
 
 .message.from-me .message-body {
-  background-color: #af9570;
+  background-color: #0431fa;
   color: white;
 }
 
 .message {
   display: flex;
   justify-content: flex-start;
-  margin-bottom: 20px;
+  color: white;
+  margin-bottom: 5px;
 }
 .message-body {
   max-width: 60%;
   display: inline-block;
   padding: 20px;
-  background-color: #eee;
+  background-color: #ff7504;
   border: 1px;
   border-radius: 5px;
   padding-right: 50px;
@@ -71,6 +72,7 @@ h3 {
 .username {
   font-weight: bold;
   font-size: 0.9rem;
-  color: #999;
+  color: #220b8b;
+  padding: 20px;
   margin-bottom: 5px;
 }

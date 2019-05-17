@@ -50,11 +50,11 @@ class ChatApp extends React.Component {
     return (
       <div className="container">
         <div className="card text-center">
-          <div className="card-header">React Chat App</div>
+          <div className="card-header chat-card-header">Chat</div>
           <div className="card-body chat-card-body">
             <Messages messages={this.state.messages} />
           </div>
-          <div className="card-footer">
+          <div className="card-footer chat-card-footer">
             <ChatInput onSend={this.sendHandler} />
           </div>
         </div>
