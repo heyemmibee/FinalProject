@@ -33,7 +33,7 @@ class ChatApp extends React.Component {
     };
 
     // Emit the message to the server
-    this.socket.emit('client:message', messageObject);
+    this.socket.emit("client:message", messageObject);
 
     messageObject.fromMe = true;
     this.addMessage(messageObject);
@@ -50,11 +50,24 @@ class ChatApp extends React.Component {
     return (
       <div className="container">
         <div className="card text-center">
-          <div className="card-header chat-card-header">Chat</div>
+          <div className="card-header">Chat</div>
           <div className="card-body chat-card-body">
-            <Messages messages={this.state.messages} />
+            <div className="row h-100">
+              <div className="col-2">
+                <div className="card text-center h-100">
+                  <div className="card-header">Users Online</div>
+                  <div className="card-body">
+                  </div>
+                </div>
+              </div>
+              <div className="col-10">
+                <div className="card h-100">
+                  <Messages messages={this.state.messages} />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="card-footer chat-card-footer">
+          <div className="card-footer">
             <ChatInput onSend={this.sendHandler} />
           </div>
         </div>
