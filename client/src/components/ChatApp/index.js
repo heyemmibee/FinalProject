@@ -3,6 +3,7 @@ import io from "socket.io-client";
 //import config from '../config';
 
 import Messages from "../Messages";
+import OnlineUsers from "../OnlineUsers";
 import ChatInput from "../ChatInput";
 
 require("./ChatApp.css");
@@ -11,7 +12,10 @@ class ChatApp extends React.Component {
   socket = {};
   constructor(props) {
     super(props);
-    this.state = { messages: [] };
+    this.state = {
+      messages: [],
+      onlineUsers: []
+    };
     this.sendHandler = this.sendHandler.bind(this);
     this.clearHandler = this.clearHandler.bind(this);
 
@@ -24,6 +28,12 @@ class ChatApp extends React.Component {
     // Listen for messages from the server
     this.socket.on("server:message", message => {
       this.addMessage(message);
+    });
+
+    // Listen to broadcast messages
+    this.socket.on("connected clients", onlineUsers => {
+      console.log("connected clients : " + onlineUsers);
+      this.addOnlineUsers(onlineUsers);
     });
   }
 
@@ -44,14 +54,18 @@ class ChatApp extends React.Component {
     // Remove all messages
     const messages = this.state.messages;
     messages.length = 0;
-    this.setState({ messages });
+    this.setState({ messages: messages });
   }
 
   addMessage(message) {
     // Append the message to the component state
     const messages = this.state.messages;
     messages.push(message);
-    this.setState({ messages });
+    this.setState({ messages: messages });
+  }
+
+  addOnlineUsers(onlineUsers) {
+    this.setState({ onlineUsers: onlineUsers });
   }
 
   render() {
@@ -64,7 +78,9 @@ class ChatApp extends React.Component {
             <div className="row h-100">
               <div className="col-2 users-online-col h-100">
                 <div className="card text-center h-100">
-                  <div className="card-body users-online-card-body h-100" />
+                  <div className="card-body users-online-card-body h-100">
+                    <OnlineUsers onlineUsers={this.state.onlineUsers} />
+                  </div>
                 </div>
               </div>
               <div className="col-10 h-100">
@@ -75,7 +91,7 @@ class ChatApp extends React.Component {
             </div>
           </div>
           <div className="card-footer">
-            <ChatInput onSend={this.sendHandler} onClear={this.clearHandler}/>
+            <ChatInput onSend={this.sendHandler} onClear={this.clearHandler} />
           </div>
         </div>
       </div>
