@@ -13,6 +13,16 @@ background: linear-gradient(90deg, rgb(0, 0, 255), rgb(255, 165, 0));
     color: grey;
 }
 
+.card {
+    opacity: .63;
+    height: 400px;
+    overflow: auto;
+}
+.card-header {
+    text-align: center;
+}
+
+
 /* ============ Chat Related CSS ==================== */
 input[type="text"] {
     margin: 10px 0px;
@@ -53,12 +63,12 @@ input[type="text"] {
     box-shadow: -7px 7px 0px rgba(50,50,50,0.15);
     margin-top: 20px;
   }
-  /* ============ Chat Related CSS End ==================== */
 
-  
   input[type="submit"]:hover {
     -webkit-box-shadow: -10px 10px 0px rgba(50,50,50,0.15);
     -moz-box-shadow: -10px 10px 0px rgba(50,50,50,0.15);
     box-shadow: -10px 10px 0px rgba(50,50,50,0.15);
     background-color: #1e1e1e;
   }
+
+  /* ============ Chat Related CSS End ==================== */

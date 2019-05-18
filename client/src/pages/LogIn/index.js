@@ -41,13 +41,15 @@ class Login extends Component {
                 console.log(response)
                 if (response.status === 200) {
                     // update App.js state
-                    this.props.updateUser({
-                        loggedIn: true,
-                        username: response.data.username
-                    })
+
+                    // commented this out because it was not working//
+                    // this.props.updateUser({
+                    //     loggedIn: true,
+                    //     username: response.data.username
+                    // })
                     // update the state to redirect to home
                     this.setState({
-                        redirectTo: '/'
+                        redirectTo: '/dashboard'
                     })
                 }
             }).catch(error => {
@@ -170,7 +172,7 @@ class Login extends Component {
                                    <br />
 
                                 <img id="signup" src="./images/signup.png" />
-                                <Link to="/dashboard"><img src="./images/login.png" onClick={this.handleSubmit}/></Link>
+                                <img src="./images/login.png" onClick={this.handleSubmit}/>
 
                     
                                 </form>
