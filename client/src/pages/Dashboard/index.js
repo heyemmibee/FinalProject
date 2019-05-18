@@ -46,11 +46,12 @@ function Dasboard() {
             <ChatApp username={username} />
           </Col>
         </Row>
+        <br/>
     
     
                 <Row>
                     <Col>
-                        <div className="card overflow-auto">
+                        <div id="blog-card" className="card overflow-auto">
                             <div className="card-header">
                                 <h1>Droid Rescue Blog</h1>
                             </div>
