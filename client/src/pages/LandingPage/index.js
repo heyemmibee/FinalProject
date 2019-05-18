@@ -5,7 +5,7 @@ import "./landingPage.css";
 // import Col from "../../components/Col"
 
 import {Container,Row,Col} from "react-bootstrap";
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
     
