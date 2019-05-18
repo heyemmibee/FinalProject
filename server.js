@@ -59,6 +59,7 @@ server.listen(PORT, function() {
 console.log("Listen for socket connection ...");
 
 // Setup socket.io
+let connectedClients = [];
 socketIo.on("connection", socket => {
   const username = socket.handshake.query.username;
   console.log(`${Date().toString()} :: ${username} CONNECTED`);
@@ -67,23 +68,14 @@ socketIo.on("connection", socket => {
   socket.join("General");
   console.log(`${Date().toString()} :: ${username} Joined General`);
 
-  // Display chatroom roster.
-  // socketIo
-  //   .of("/")
-  //   .in("General")
-  //   .clients(function(error, clients) {
-  //     let numClients = clients.length;
-  //     console.log("Num Clients : " + numClients);
-  //     clients.forEach(function(client) {
-  //       console.log("Username: " + JSON.stringify(client));
-  //     });
-  //   });
-    displayClients(socketIo);
+  // Broadcast a list of connected clients.
+  connectedClients.push(username);
+  console.log(connectedClients);
+  socketIo.to("General").emit("connected clients",connectedClients);
+
 
   socket.on("client:message", data => {
     console.log(`${Date().toString()} :: ${data.username}: ${data.message}`);
-
-    displayClients(socketIo);
 
     // message received from client, now broadcast it to everyone else
     socket.to("General").emit("server:message", data);
@@ -91,19 +83,13 @@ socketIo.on("connection", socket => {
 
   socket.on("disconnect", () => {
     console.log(`${Date().toString()} :: ${username} DISCONNECTED`);
-    // TODO : Tell everyone else in the room that user has disconnected.
+
+    // Remove user.
+    connectedClients.splice(connectedClients.indexOf(username), 1);
+    console.log(connectedClients);
+    // Broadcast a list of connected clients
+    socketIo.to("General").emit("connected clients",connectedClients);
   });
 });
 
-displayClients = socketIo => {
-  socketIo
-    .of("/")
-    .in("General")
-    .clients(function(error, clients) {
-      let numClients = clients.length;
-      console.log("Num Clients : " + numClients);
-      clients.forEach(function(client) {
-        console.log("Username: " + JSON.stringify(client));
-      });
-    });
-};
+

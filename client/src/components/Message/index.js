@@ -1,26 +1,31 @@
-import React from 'react';
+import React from "react";
 
 class Message extends React.Component {
   render() {
     // Was the message sent by the current user. If so, add a css class
-    const fromMe = this.props.fromMe ? 'from-me' : '';
+    const fromMe = this.props.fromMe ? "from-me" : "";
 
     return (
       <div className={`message ${fromMe}`}>
-        <div className='username'>
-          { this.props.username }
+        <div className="username">
+          <img
+            src="./images/female_user.png"
+            width="45"
+            height="45"
+            className="d-inline-block align-top"
+            alt="female_user"
+          />
+          {this.props.username}
         </div>
-        <div className='message-body'>
-          { this.props.message }
-        </div>
+        <div className="message-body">{this.props.message}</div>
       </div>
     );
   }
 }
 
 Message.defaultProps = {
-  message: '',
-  username: '',
+  message: "",
+  username: "",
   fromMe: false
 };
 

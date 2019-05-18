@@ -1,44 +1,69 @@
-import React from 'react';
+import React from "react";
 
 class ChatInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { chatInput: '' };
+    this.state = { chatInput: "" };
 
     // React ES6 does not bind 'this' to event handlers by default
     this.submitHandler = this.submitHandler.bind(this);
     this.textChangeHandler = this.textChangeHandler.bind(this);
+    this.clearHandler = this.clearHandler.bind(this);
   }
-  
-  submitHandler(event) {
-    // Stop the form from refreshing the page on submit
-    event.preventDefault();
 
+  submitHandler() {
     // Clear the input box
-    this.setState({ chatInput: '' });
+    this.setState({ chatInput: "" });
 
-    // Call the onSend callback with the chatInput message
-    this.props.onSend(this.state.chatInput);
+    // Send only if not an empty string.
+    let chatString = this.state.chatInput.trim();
+    if (chatString !== "") {
+      // Call the onSend callback with the chatInput message
+      this.props.onSend(chatString);
+    }
   }
 
-  textChangeHandler(event)  {
+  clearHandler() {
+    // Clear the input box
+    this.setState({ chatInput: "" });
+
+    // Call the onClear callback
+    this.props.onClear();
+  }
+
+  textChangeHandler(event) {
     this.setState({ chatInput: event.target.value });
   }
 
   render() {
     return (
-      <form className="chat-input" onSubmit={this.submitHandler}>
-        <input type="text"
+      <div className="row">
+        <textarea
+          className="form-control m-1"
           onChange={this.textChangeHandler}
           value={this.state.chatInput}
           placeholder="Write a message..."
-          required />
-      </form>
+          required
+        />
+        <button
+          type="button"
+          className="btn btn-primary m-1"
+          onClick={this.submitHandler}
+        >
+          Send
+        </button>
+        <button
+          type="button"
+          className="btn btn-danger m-1"
+          onClick={this.clearHandler}
+        >
+          Clear
+        </button>
+      </div>
     );
   }
 }
 
-ChatInput.defaultProps = {
-};
+ChatInput.defaultProps = {};
 
 export default ChatInput;
