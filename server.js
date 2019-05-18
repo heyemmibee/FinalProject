@@ -9,6 +9,9 @@ const routes = require("./routes");
 const user = require('./routes/user');
 const passport = require("./passport");
 const app = express();
+const server = require("http").Server(app);
+const socketIo = require("socket.io")(server);
+
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
@@ -49,7 +52,58 @@ app.use(routes);
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/underdogdb");
 
-// Start the API server
-app.listen(PORT, function() {
+server.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
+console.log("Listen for socket connection ...");
+
+// Setup socket.io
+socketIo.on("connection", socket => {
+  const username = socket.handshake.query.username;
+  console.log(`${Date().toString()} :: ${username} CONNECTED`);
+
+  socket.nickname = username;
+  socket.join("General");
+  console.log(`${Date().toString()} :: ${username} Joined General`);
+
+  // Display chatroom roster.
+  // socketIo
+  //   .of("/")
+  //   .in("General")
+  //   .clients(function(error, clients) {
+  //     let numClients = clients.length;
+  //     console.log("Num Clients : " + numClients);
+  //     clients.forEach(function(client) {
+  //       console.log("Username: " + JSON.stringify(client));
+  //     });
+  //   });
+    displayClients(socketIo);
+
+  socket.on("client:message", data => {
+    console.log(`${Date().toString()} :: ${data.username}: ${data.message}`);
+
+    displayClients(socketIo);
+
+    // message received from client, now broadcast it to everyone else
+    socket.to("General").emit("server:message", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(`${Date().toString()} :: ${username} DISCONNECTED`);
+    // TODO : Tell everyone else in the room that user has disconnected.
+  });
+});
+
+displayClients = socketIo => {
+  socketIo
+    .of("/")
+    .in("General")
+    .clients(function(error, clients) {
+      let numClients = clients.length;
+      console.log("Num Clients : " + numClients);
+      clients.forEach(function(client) {
+        console.log("Username: " + JSON.stringify(client));
+      });
+    });
+};
