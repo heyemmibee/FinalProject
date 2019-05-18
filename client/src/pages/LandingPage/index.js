@@ -32,7 +32,7 @@ function LandingPage() {
                 </Row>
                 <Row>
                     <Col>
-                        <p id="statement">HelpHub is an opportunity for Volunteers and Non-Profits to connect. Stay engaged with your community, find your way to making a positive impact. There is no gift like the present!</p>
+                        <p id="statement">HelpHub is an opportunity for Volunteers and Non-Profits to connect. Make a positive impact by staying engaged with your community. There is no gift like the present, volunteer now!</p>
                     </Col>
                 </Row>
                 <Row>

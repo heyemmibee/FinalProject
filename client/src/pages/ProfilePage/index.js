@@ -3,6 +3,21 @@ import "./profilePage.css";
 import { Container, Row, Col, Nav } from "react-bootstrap";
 import {Link} from "react-router-dom"
 
+class Profiles extends Component {
+    state = {
+      profiles: []
+    };
+  
+    componentDidMount() {
+      this.loadProfiles();
+    }
+  
+    loadProfiles = () => {
+      API.getProfiles()
+        .then(res => this.setState({ profiles: res.data }))
+        .catch(err => console.log(err));
+    };
+};
 
 function ProfilePage() {
     return (
@@ -219,8 +234,9 @@ function ProfilePage() {
                         </form>
                     </Col>
                 </Row >
+                <br/><br />
                 <Row>
-                    <Col></Col>
+                    <Col><img id="update" src="./images/update.png"/></Col>
                     <Col><img id="submit" src="./images/submit.png" /></Col>
 
                 </Row>
