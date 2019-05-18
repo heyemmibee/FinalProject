@@ -54,7 +54,11 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path="/" component={LandingPage} />
-          <Route exact path="/profile" component={ProfilePage} />
+          <Route
+            exact
+            path="/profile"
+            render={() => <ProfilePage username={this.state.username} loggedIn={this.state.loggedIn} />}
+          />
           <Route exact path="/signup" component={SignUp} />
           <Route
             exact
