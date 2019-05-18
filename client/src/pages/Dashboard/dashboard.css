@@ -13,8 +13,8 @@ background: linear-gradient(90deg, rgb(0, 0, 255), rgb(255, 165, 0));
     color: grey;
 }
 
-.card {
-    opacity: .63;
+#blog-card {
+    /* opacity: .63; */
     height: 400px;
     overflow: auto;
 }
