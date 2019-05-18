@@ -11,6 +11,9 @@ require("./ChatApp.css");
 class ChatApp extends React.Component {
   socket = {};
   constructor(props) {
+
+    console.log("Constructor");
+
     super(props);
     this.state = {
       messages: [],
@@ -18,11 +21,18 @@ class ChatApp extends React.Component {
     };
     this.sendHandler = this.sendHandler.bind(this);
     this.clearHandler = this.clearHandler.bind(this);
+    this.username = props.username;
 
+  }
+
+  componentDidMount() {
+    console.log("componentDidMount");
+
+    
     // Connect to the server
     let socket_url = window.location.href.split(window.location.pathname)[0];
     this.socket = io(socket_url, {
-      query: `username=${props.username}`
+      query: `username=${this.username}`
     }).connect();
 
     // Listen for messages from the server
@@ -35,6 +45,13 @@ class ChatApp extends React.Component {
       console.log("connected clients : " + onlineUsers);
       this.addOnlineUsers(onlineUsers);
     });
+  }
+
+  componentWillUnmount() {
+    console.log("componentWillUnmount");
+
+    // Disconnect socket.
+    this.socket.disconnect(true);
   }
 
   sendHandler(message) {
