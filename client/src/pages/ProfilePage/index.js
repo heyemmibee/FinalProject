@@ -221,7 +221,7 @@ function ProfilePage() {
                 </Row >
                 <Row>
                     <Col></Col>
-                    <Col><img id="submit" src="./images/submit.png" /></Col>
+                    <Col><img id="submit" src="./images/submit.png" alt=""/></Col>
 
                 </Row>
                 <br /> <br /> <br /> <br />
