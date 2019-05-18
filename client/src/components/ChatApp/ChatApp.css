@@ -1,6 +1,11 @@
-.container {
+.message-container {
   display: flex;
   flex-direction: column;
+}
+
+.users-online-card-body {
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .messages {
@@ -30,12 +35,6 @@ h3 {
   overflow: hidden;
   padding: 0 40px;
   flex-shrink: 0;
-}
-
-.chat-input input[type="text"] {
-  width: 100%;
-  margin-left: -20px;
-  margin-right: -20px;
 }
 
 .message.from-me .username {

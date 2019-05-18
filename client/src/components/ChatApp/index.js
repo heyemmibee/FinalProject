@@ -13,6 +13,7 @@ class ChatApp extends React.Component {
     super(props);
     this.state = { messages: [] };
     this.sendHandler = this.sendHandler.bind(this);
+    this.clearHandler = this.clearHandler.bind(this);
 
     // Connect to the server
     let socket_url = window.location.href.split(window.location.pathname)[0];
@@ -39,6 +40,13 @@ class ChatApp extends React.Component {
     this.addMessage(messageObject);
   }
 
+  clearHandler() {
+    // Remove all messages
+    const messages = this.state.messages;
+    messages.length = 0;
+    this.setState({ messages });
+  }
+
   addMessage(message) {
     // Append the message to the component state
     const messages = this.state.messages;
@@ -51,16 +59,15 @@ class ChatApp extends React.Component {
       <div className="container">
         <div className="card text-center">
           <div className="card-header">Chat</div>
+
           <div className="card-body chat-card-body">
             <div className="row h-100">
-              <div className="col-2">
+              <div className="col-2 users-online-col h-100">
                 <div className="card text-center h-100">
-                  <div className="card-header">Users Online</div>
-                  <div className="card-body">
-                  </div>
+                  <div className="card-body users-online-card-body h-100" />
                 </div>
               </div>
-              <div className="col-10">
+              <div className="col-10 h-100">
                 <div className="card h-100">
                   <Messages messages={this.state.messages} />
                 </div>
@@ -68,7 +75,7 @@ class ChatApp extends React.Component {
             </div>
           </div>
           <div className="card-footer">
-            <ChatInput onSend={this.sendHandler} />
+            <ChatInput onSend={this.sendHandler} onClear={this.clearHandler}/>
           </div>
         </div>
       </div>
