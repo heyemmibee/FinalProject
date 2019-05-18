@@ -12,3 +12,11 @@ background: linear-gradient(90deg, rgb(0, 0, 255), rgb(255, 165, 0));
 .link {
     color: grey;
 }
+.card {
+    opacity: .63;
+    height: 400px;
+    overflow: auto;
+}
+.card-header {
+    text-align: center;
+}
