@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./profilePage.css";
 import { Container, Row, Col, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom"
-import axios from 'axios'
+import { Link , Redirect} from "react-router-dom"
+import axios from 'axios';
 
 class ProfilePage extends Component {
     state = {
@@ -76,6 +76,9 @@ checkboxSkills = (event) => {
     //     .catch(err => console.log(err));
     // };
     render() {
+        if (this.state.redirectTo) {
+        return <Redirect to={{ pathname: this.state.redirectTo }} />;
+      }
         return (
 
             <div>

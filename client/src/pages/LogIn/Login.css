@@ -53,3 +53,8 @@ background: linear-gradient(90deg, rgb(0, 0, 255), rgb(255, 165, 0));
 label {
     font-size: 20px;
 }
+/* input#username {
+    padding: 1px !important;
+    margin: 0px;
+    height: 32px;
+} */

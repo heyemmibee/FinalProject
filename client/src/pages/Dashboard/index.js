@@ -146,6 +146,7 @@ class Dasboard extends Component {
                     </Row>
                   </div>
                 </div>
+                <br /><br />
               </Col>
             </Row>
           </Container>
