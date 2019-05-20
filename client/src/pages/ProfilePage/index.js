@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./profilePage.css";
 import { Container, Row, Col, Nav } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
+import axios from 'axios'
+
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -12,6 +14,8 @@ class ProfilePage extends Component {
     };
     this.username = this.props.username;
     this.loggedIn = this.props.loggedIn;
+    // this.logout = this.props.logout.bind(this)
+
     console.log("username : " + this.username);
     console.log("loggedIn : " + this.loggedIn);
   }
@@ -24,6 +28,23 @@ class ProfilePage extends Component {
       });
     }
   }
+
+  // logout(event) {
+  //   event.preventDefault()
+  //   console.log('logging out')
+  //   axios.post('/user/logout').then(response => {
+  //     console.log(response.data)
+  //     if (response.status === 200) {
+  //       this.props.updateUser({
+  //         loggedIn: false,
+  //         username: null
+  //       })
+  //     }
+  //   }).catch(error => {
+  //       console.log('Logout error:' + error)
+
+  //   })
+  // }
 
   render() {
     if (this.state.redirectTo) {
@@ -47,7 +68,9 @@ class ProfilePage extends Component {
               <Link class="link" to="/dashboard">
                 <h4 className="links d-inline">Dashboard </h4>
               </Link>
-              <Link class="link" to="/login">
+              <Link class="link" to="/login" 
+              // onClick={this.logout}
+              >
                 <h4 className="links d-inline">| Logout</h4>
               </Link>
             </div>

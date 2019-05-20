@@ -63,6 +63,10 @@ class Login extends Component {
     console.log('sign-up handleSubmit, username: ')
     // console.log(this.state.username)
     event.preventDefault()
+    if(this.state.username === "") {
+      alert("please enter a username")
+    }
+    else {
 
     //request to server to add a new username/password
     axios.post('/user/', {
@@ -91,6 +95,7 @@ class Login extends Component {
             console.log(error)
 
         })
+      }
 }
 
   render() {
