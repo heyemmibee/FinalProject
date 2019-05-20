@@ -19,14 +19,14 @@ class Dasboard extends Component {
     console.log("loggedIn : " + this.loggedIn);
   }
 
-  componentWillMount() {
-    // Redirect to login page if user is not logged in.  Do it before first render.
-    if (this.loggedIn === false) {
-      this.setState({
-        redirectTo: "/login"
-      });
-    }
-  }
+  // componentWillMount() {
+  //   // Redirect to login page if user is not logged in.  Do it before first render.
+  //   if (this.loggedIn === false) {
+  //     this.setState({
+  //       redirectTo: "/login"
+  //     });
+  //   }
+  // }
 
   render() {
     if (this.state.redirectTo) {
@@ -58,7 +58,11 @@ class Dasboard extends Component {
             <Row>
               <Col />
             </Row>
-
+            <Row>
+              <Col>
+              <FullCalendar ref={this.calendarRef} plugins={[ dayGridPlugin ]} />
+              </Col>
+            </Row>
             <Row>
               <Col>
                 <ChatApp username={this.username} />
