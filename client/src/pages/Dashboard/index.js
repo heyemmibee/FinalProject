@@ -60,7 +60,7 @@ class Dasboard extends Component {
             </Row>
             <Row>
               <Col>
-              <FullCalendar ref={this.calendarRef} plugins={[ dayGridPlugin ]} />
+              {/* input calendar */}
               </Col>
             </Row>
             <Row>
