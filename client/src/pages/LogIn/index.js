@@ -72,10 +72,15 @@ class Login extends Component {
         .then(response => {
             console.log(response)
             if (!response.data.errmsg) {
-                alert("Success! You are now ready to log in.")
+                alert("Success!")
                 console.log('successful signup')
+                // update App.js state
+          this.props.updateUser({
+            loggedIn: true,
+            username: response.data.username
+          });
                 this.setState({ //redirect to login page
-                    redirectTo: '/dashboard'
+                    redirectTo: '/profile'
                 })
             } else {
                 console.log('username already taken');
