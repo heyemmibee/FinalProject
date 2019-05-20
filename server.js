@@ -9,6 +9,9 @@ const routes = require("./routes");
 const user = require('./routes/user');
 const passport = require("./passport");
 const app = express();
+const server = require("http").Server(app);
+const socketIo = require("socket.io")(server);
+
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
@@ -49,7 +52,44 @@ app.use(routes);
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/underdogdb");
 
-// Start the API server
-app.listen(PORT, function() {
+server.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
+console.log("Listen for socket connection ...");
+
+// Setup socket.io
+let connectedClients = [];
+socketIo.on("connection", socket => {
+  const username = socket.handshake.query.username;
+  console.log(`${Date().toString()} :: ${username} CONNECTED`);
+
+  socket.nickname = username;
+  socket.join("General");
+  console.log(`${Date().toString()} :: ${username} Joined General`);
+
+  // Broadcast a list of connected clients.
+  connectedClients.push(username);
+  console.log(connectedClients);
+  socketIo.to("General").emit("connected clients",connectedClients);
+
+
+  socket.on("client:message", data => {
+    console.log(`${Date().toString()} :: ${data.username}: ${data.message}`);
+
+    // message received from client, now broadcast it to everyone else
+    socket.to("General").emit("server:message", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(`${Date().toString()} :: ${username} DISCONNECTED`);
+
+    // Remove user.
+    connectedClients.splice(connectedClients.indexOf(username), 1);
+    console.log(connectedClients);
+    // Broadcast a list of connected clients
+    socketIo.to("General").emit("connected clients",connectedClients);
+  });
+});
+
+

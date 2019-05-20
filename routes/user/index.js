@@ -2,10 +2,6 @@ const express = require("express");
 const router = express.Router();
 const User = require("../../models/user");
 const passport = require("../../passport");
-const db = require("../../models");
-const mongoose = require("mongoose");
-
-// const profile = require("../../models/profile")
 
 router.post('/', (req, res) => {
   console.log("user signup");
@@ -67,14 +63,5 @@ router.post("/logout", (req, res) => {
     res.send({ msg: "no user to log out" });
   }
 });
-
-// router.post("/profile", (req, res) => {
-//   console.log(req.body);
-//     db.Profile
-//       .create(req.body)
-//       .then(dbModel => res.json(dbModel))
-//       .catch(err => res.status(422).json(err));
-  
-// })
 
 module.exports = router;

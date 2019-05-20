@@ -5,7 +5,7 @@ import "./landingPage.css";
 // import Col from "../../components/Col"
 
 import {Container,Row,Col} from "react-bootstrap";
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
     
@@ -32,7 +32,7 @@ function LandingPage() {
                 </Row>
                 <Row>
                     <Col>
-                        <p id="statement">HelpHub is an opportunity for Volunteers and Non-Profits to connect. Make a positive impact by staying engaged with your community. There is no gift like the present, volunteer now!</p>
+                        <p id="statement">HelpHub is an opportunity for Volunteers, and Non-Profits to get connected and stay engaged. There is no gift like now, that’s why it’s called the present. Get involved today and find your way to making a positive impact.</p>
                     </Col>
                 </Row>
                 <Row>
