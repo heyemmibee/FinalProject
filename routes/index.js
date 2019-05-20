@@ -2,6 +2,7 @@ const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
 const user = require("./user");
+const profile = require ("./profile")
 
 // API Routes
 router.use("/api", apiRoutes);
