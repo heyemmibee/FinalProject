@@ -43,6 +43,7 @@ class ProfilePage extends Component {
               HelpHub
             </h1>
             <div className="ml-auto">
+            <p>Hello {this.username}!</p>
               <Link class="link" to="/dashboard">
                 <h4 className="links d-inline">Dashboard </h4>
               </Link>
