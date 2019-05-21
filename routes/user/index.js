@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
         if (err) return res.json(err);
         db.Profile.create({
           name: "",
-          email: "empty@test.com",
+          email: "",
           phone: "000-000-0000",
           inputCity: "",
           inputState: "",
