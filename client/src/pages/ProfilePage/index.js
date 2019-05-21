@@ -128,16 +128,16 @@ handleInputChange = event => {
                                 </div>
                                 <div className="form-group">
                                     <label for="Phone" className="input">Phone Number</label>
-                                    <input type="phone" className="form-control" id="phone" placeholder="202-555-5555" value={this.state.profiles.phone}/>
+                                    <input type="phone" className="form-control" id="phone" placeholder="202-555-5555" value={this.state.profiles.phone} onChange={this.handleInputChange}/>
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
                                         <label for="inputCity" className="input">City</label>
-                                        <input type="text" className="form-control" id="inputCity" placeholder="Arlington" value={this.state.profiles.inputCity}/>
+                                        <input type="text" className="form-control" id="inputCity" placeholder="Arlington" value={this.state.profiles.inputCity} onChange={this.handleInputChange}/>
                                     </div>
                                     <div className="form-group col-md-4">
                                         <label for="inputState" className="input">State</label>
-                                        <select id="inputState" className="form-control">
+                                        <select id="inputState" className="form-control" value={this.state.profiles.inputState} onChange={this.handleInputChange}>
                                             <option selected>Choose...</option>
                                             <option value="AK">Alaska</option>
                                             <option value="AL">Alabama</option>
@@ -195,12 +195,12 @@ handleInputChange = event => {
                                     </div>
                                     <div className="form-group col-md-2">
                                         <label for="inputZip" className="input">Zip</label>
-                                        <input type="text" className="form-control" id="inputZip" placeholder="22201" value={this.state.profiles.inputZip}/>
+                                        <input type="text" className="form-control" id="inputZip" placeholder="22201" value={this.state.profiles.inputZip} onChange={this.handleInputChange}/>
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label for="time" className="input">Amount Of Time That You Can Commit</label>
-                                    <select className="form-control" id="time" >
+                                    <select className="form-control" id="time" value={this.state.profiles.time} onChange={this.handleInputChange}>
                                         <option>0-5 hours/week</option>
                                         <option>5-10 hours/week</option>
                                         <option>10-15 hours/week</option>
