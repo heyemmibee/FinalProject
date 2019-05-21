@@ -2,15 +2,8 @@ import React, { Component } from "react";
 import { Container, Row, Col, Nav } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-//mm that sass
-// import 'main.scss';
-//day click function
-// import interactionPlugin from '@fullcalendar/interaction';
-// import timeGridPlugin from '@fullcalendar/timegrid';
-
 import ChatApp from "../../components/Chat/ChatApp";
+import CalendarApp from "../../components/calendar";
 
 import "./dashboard.css";
 
@@ -27,23 +20,15 @@ class Dasboard extends Component {
     console.log("loggedIn : " + this.loggedIn);
   }
 
-  // componentWillMount() {
-  //   // Redirect to login page if user is not logged in.  Do it before first render.
-  //   if (this.loggedIn === false) {
-  //     this.setState({
-  //       redirectTo: "/login"
-  //     });
-  //   }
-  // }
-
-  //injecting the code
-  calendarComponentRef = React.createRef()
-  state = {
-    calendarWeekends: true,
-    calendarEvents: [
-      { title: 'Event Now', start: new Date()}
-    ]
+  componentWillMount() {
+    // Redirect to login page if user is not logged in.  Do it before first render.
+    if (this.loggedIn === false) {
+      this.setState({
+        redirectTo: "/login"
+      });
+    }
   }
+
 
   render() {
     if (this.state.redirectTo) {
@@ -72,11 +57,11 @@ class Dasboard extends Component {
               </Link>
             </div>
           </Nav>
+          <br></br>
           <Container>
             <Row>
-            <FullCalendar defaultView="dayGridMonth" plugins={[ dayGridPlugin ]} />
+            <CalendarApp/>
             </Row>
-
             <Row>
               <Col>
                 <ChatApp username={this.username} />
