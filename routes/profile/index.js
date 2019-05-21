@@ -6,15 +6,29 @@ const mongoose = require("mongoose");
 
 // import profile from "../profile"
 
-router.post("/profile", (req, res) => {
-  console.log(req.body);
-    db.Profile
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  
+router.post("/profile/:id", (req,res) => {
+  console.log(req.params.id);
+  db.Profile.findOneAndUpdate({_id: req.params.id}, req.body)
+  .then(function(dbProfile){
+    console.log(dbProfile);
+    res.json(dbProfile)
+  })
+  .catch( function(err){
+    console.log(err);
+  })
 })
 
+router.get("/profile/:id", (req,res) => {
+  console.log(req.params.id);
+  db.User.findOne({_id: req.params.id})
+  .populate ("profile").then(function(dbProfile){
+    console.log(dbProfile);
+    res.json(dbProfile)
+  })
+  .catch( function(err){
+    console.log(err);
+  })
+})
 // router.route("/profile")
 //   .get(profile.findAll)
 //   .post(profile.create);

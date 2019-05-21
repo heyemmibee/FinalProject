@@ -9,11 +9,12 @@ class ProfilePage extends Component {
         profiles: [],
         interests: {},
         skills: {},
-        redirectTo: null
+        redirectTo: null,
+        profileId: null
     };
 
     componentDidMount() {
-        //   this.loadProfiles();
+          this.loadProfiles();
     }
 profileSubmit = () => {
     let name = document.getElementById("name").value;
@@ -42,7 +43,7 @@ profileSubmit = () => {
     }
         console.log(obj);
         axios
-        .post('/profile/profile', obj)
+        .post('/profile/profile/' + this.state.profileId, obj)
         .then(response => {
             console.log(response)
             if (response.status === 200) {
@@ -70,11 +71,18 @@ checkboxSkills = (event) => {
     console.log(event.target.value);
 
 }
-    // loadProfiles = () => {
+handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+     profiles: {[name]: value}
+    });
+  };
+    loadProfiles = () => {
+        axios.get("/profile/profile/" + this.props.id).then(res => this.setState({ profiles: res.data.profile, profileId: res.data.profile._id }))
     //   API.getProfiles()
     //     .then(res => this.setState({ profiles: res.data }))
     //     .catch(err => console.log(err));
-    // };
+    };
     render() {
         if (this.state.redirectTo) {
         return <Redirect to={{ pathname: this.state.redirectTo }} />;
@@ -85,6 +93,7 @@ checkboxSkills = (event) => {
                 <Nav className="navbar">
                     <h1 id="navTitle" ><img src="./images/hands2.png" width="45" height="45" className="d-inline-block align-top" alt="" />  HelpHub</h1>
                     <div className="ml-auto">
+                    <h4 className="d-inline">Hello {this.props.username}!  </h4>
                         <Link className="link" to="/dashboard"><h4 className="links d-inline">Dashboard  </h4></Link>
                         <Link className="link" to="/login"><h4 className="links d-inline">|  Logout</h4></Link>
                     </div>
@@ -111,20 +120,20 @@ checkboxSkills = (event) => {
                             <form>
                                 <div className="form-group">
                                     <label for="name" className="input">Name</label>
-                                    <input type="name" className="form-control" id="name" placeholder="John Doe" />
+                                    <input type="name" name="name" className="form-control" id="name" placeholder="John Doe" value={this.state.profiles.name} onChange={this.handleInputChange}/>
                                 </div>
                                 <div className="form-group">
                                     <label for="exampleFormControlInput1" className="input">Email address</label>
-                                    <input type="email" className="form-control" id="email" placeholder="name@example.com" />
+                                    <input type="email" name="email" className="form-control" id="email" placeholder="name@example.com" value={this.state.profiles.email} onChange={this.handleInputChange}/>
                                 </div>
                                 <div className="form-group">
                                     <label for="Phone" className="input">Phone Number</label>
-                                    <input type="phone" className="form-control" id="phone" placeholder="202-555-5555" />
+                                    <input type="phone" className="form-control" id="phone" placeholder="202-555-5555" value={this.state.profiles.phone}/>
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
                                         <label for="inputCity" className="input">City</label>
-                                        <input type="text" className="form-control" id="inputCity" placeholder="Arlington" />
+                                        <input type="text" className="form-control" id="inputCity" placeholder="Arlington" value={this.state.profiles.inputCity}/>
                                     </div>
                                     <div className="form-group col-md-4">
                                         <label for="inputState" className="input">State</label>
@@ -186,12 +195,12 @@ checkboxSkills = (event) => {
                                     </div>
                                     <div className="form-group col-md-2">
                                         <label for="inputZip" className="input">Zip</label>
-                                        <input type="text" className="form-control" id="inputZip" placeholder="22201" />
+                                        <input type="text" className="form-control" id="inputZip" placeholder="22201" value={this.state.profiles.inputZip}/>
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label for="time" className="input">Amount Of Time That You Can Commit</label>
-                                    <select className="form-control" id="time">
+                                    <select className="form-control" id="time" >
                                         <option>0-5 hours/week</option>
                                         <option>5-10 hours/week</option>
                                         <option>10-15 hours/week</option>
@@ -295,7 +304,7 @@ checkboxSkills = (event) => {
                     </Row >
                     <br /><br />
                     <Row>
-                        <Col><img id="update" src="./images/update.png" /></Col>
+                        <Col></Col>
                         <Col><img id="submit" src="./images/submit.png" onClick={this.profileSubmit} /></Col>
 
                     </Row>
