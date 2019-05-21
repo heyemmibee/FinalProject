@@ -68,8 +68,7 @@ class Login extends Component {
     //request to server to add a new username/password
     axios.post('/user/', {
         username: this.state.username,
-        password: this.state.password,
-        // id: this.state.id
+        password: this.state.password
     })
         .then(response => {
             console.log(response)

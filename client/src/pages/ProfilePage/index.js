@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./profilePage.css";
 import { Container, Row, Col, Nav } from "react-bootstrap";
+
 import { Link , Redirect} from "react-router-dom"
 import axios from 'axios';
 
@@ -318,5 +319,4 @@ handleInputChange = event => {
     }
 }
 
-
-export default ProfilePage
+export default ProfilePage;
