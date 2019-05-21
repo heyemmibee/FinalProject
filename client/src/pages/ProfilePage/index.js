@@ -78,6 +78,7 @@ handleInputChange = event => {
     });
   };
     loadProfiles = () => {
+        console.log(this.props.id);
         axios.get("/profile/profile/" + this.props.id).then(res => this.setState({ profiles: res.data.profile, profileId: res.data.profile._id }))
     //   API.getProfiles()
     //     .then(res => this.setState({ profiles: res.data }))

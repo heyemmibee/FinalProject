@@ -40,7 +40,8 @@ class Login extends Component {
           // update App.js state
           this.props.updateUser({
             loggedIn: true,
-            username: response.data.username
+            username: response.data.username,
+            id: response.data.id
           });
           // update the state to redirect to home
           this.setState({
@@ -67,7 +68,8 @@ class Login extends Component {
     //request to server to add a new username/password
     axios.post('/user/', {
         username: this.state.username,
-        password: this.state.password
+        password: this.state.password,
+        // id: this.state.id
     })
         .then(response => {
             console.log(response)
@@ -77,7 +79,8 @@ class Login extends Component {
                 // update App.js state
           this.props.updateUser({
             loggedIn: true,
-            username: response.data.username
+            username: response.data.username,
+            id: response.data._id
           });
                 this.setState({ //redirect to login page
                     redirectTo: '/profile'

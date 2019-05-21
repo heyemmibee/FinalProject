@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
     } else {
       const newUser = new User({
         username: username,
-        password: password
+        password: password,
       });
       newUser.save((err, savedUser) => {
         if (err) return res.json(err);
@@ -38,7 +38,9 @@ router.post('/', (req, res) => {
           .catch( function (err){
             console.log(err);
           })
+          console.log("Hello", savedUser);
         res.json(savedUser);
+      
       });
     }
   });
@@ -56,7 +58,8 @@ router.post(
   (req, res) => {
     console.log("logged in", req.user);
     var userInfo = {
-      username: req.user.username
+      username: req.user.username,
+      id: req.user._id
     };
     res.send(userInfo);
   }
