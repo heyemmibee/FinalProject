@@ -7,8 +7,9 @@ const eventsSchema = new Schema({
 
     //userid from login? Help
     creator: { 
-        type: Schema.ObjectId, 
-        ref: 'User'
+        //type: Schema.ObjectId, 
+        //ref: 'User'
+        type: String
     },
     title: { 
         type: String, 
@@ -23,10 +24,19 @@ const eventsSchema = new Schema({
         maxlength: 300
     },
     category: [{ 
-        type: Schema.ObjectId, 
-        ref: 'category'
+        //type: Schema.ObjectId, 
+        //ref: 'category'
+        type: String
+    }],
+    skills: [{ 
+        //type: Schema.ObjectId, 
+        //ref: 'category'
+        type: String
     }],
     date: { 
+        type: String
+    },
+    created: { 
         type: Date, 
         default: Date.now,
         timestamp: true

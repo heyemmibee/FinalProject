@@ -22,6 +22,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getUser();
+    this.getEvents();
   }
 
   updateUser(userObject) {
@@ -48,6 +49,18 @@ class App extends Component {
       }
     });
   }
+
+  // !!!!!! TODO : The code below should move to the Calendar app. !!!!!!
+  // ========= Start Code Snippet ===================
+  getEvents() {
+    axios.get("/events/").then(response => {
+      console.log("Get events response: ");
+      console.log(response.data);
+    });
+  }
+  // ========= End Code Snippet =====================
+  // !!!!!! TODO : This should move to the Calendar app. !!!!!!
+
 
   render() {
     return (
