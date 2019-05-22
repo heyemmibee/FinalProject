@@ -52,9 +52,16 @@ time: {
   ref: "profileTime"
 
 },
-// interests: {
-//   type: 
-// },
+interests: {
+  type: Object,
+  trim: true,
+  ref: "interests"
+},
+skills: {
+  type: Object,
+  trim: true,
+  ref: "skills"
+},
 
 date: {
   type: Date,
