@@ -23,6 +23,9 @@ class App extends Component {
 
   componentDidMount() {
     this.getUser();
+    this.setState({
+      loggedIn: false
+    })
   }
 
   updateUser(userObject) {
@@ -71,7 +74,8 @@ class App extends Component {
           <Route
             exact
             path="/dashboard"
-            render={() => <Dasboard username={this.state.username} loggedIn={this.state.loggedIn} />}
+            render={() => <Dasboard updateUser={this.updateUser} username={this.state.username} loggedIn={
+              this.state.loggedIn} />}
           />
         </div>
       </Router>

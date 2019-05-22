@@ -11,13 +11,19 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      redirectTo: null
+      redirectTo: null,
+      loggedIn: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSignin = this.handleSignin.bind(this)
   }
-
+  componentDidMount() {
+    // this.getUser(),
+    this.setState({
+      loggedIn: false
+    })
+}
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
