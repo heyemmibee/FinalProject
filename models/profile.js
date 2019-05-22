@@ -13,13 +13,13 @@ name: {
 
 email: {
   type: String,
-  unique: true,
+  // unique: true,
   match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
   ref: "profileEmail"
  },
 
 phone: {
-  type: Number,
+  type: String,
   validate: {
     validator: function(v) {
       return /\d{3}-\d{3}-\d{4}/.test(v);
@@ -29,23 +29,32 @@ phone: {
   ref: "profilePhone"
 },
 
-city: {
+inputCity: {
   type: String,
   trim: true,
   ref: "profileCity"
 },
 
-state: {
+inputState: {
   type: String,
   trim: true,
   ref: "profileState"
 },
 
-zip: {
-  type: Number,
+inputZip: {
+  type: String,
   trim: true,
   ref: "profileZip"
 },
+time: {
+  type: String,
+  trim: true,
+  ref: "profileTime"
+
+},
+// interests: {
+//   type: 
+// },
 
 date: {
   type: Date,

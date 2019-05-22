@@ -12,7 +12,8 @@ class App extends Component {
     super();
     this.state = {
       loggedIn: false,
-      username: null
+      username: null,
+      id: null
     };
 
     this.getUser = this.getUser.bind(this);
@@ -35,10 +36,12 @@ class App extends Component {
       console.log(response.data);
       if (response.data.user) {
         console.log("Get User: There is a user saved in the server session: ");
+        console.log(response.data);
 
         this.setState({
           loggedIn: true,
-          username: response.data.user.username
+          username: response.data.user.username,
+          id: response.data.user._id
         });
       } else {
         console.log("Get user: no user");
@@ -70,7 +73,7 @@ class App extends Component {
           <Route
             exact
             path="/profile"
-            render={() => <ProfilePage username={this.state.username} loggedIn={this.state.loggedIn} />}
+            render={() => <ProfilePage username={this.state.username} loggedIn={this.state.loggedIn} id={this.state.id} />}
           />
           <Route exact path="/signup" component={SignUp} />
           <Route

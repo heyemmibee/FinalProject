@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../../models/user");
 const passport = require("../../passport");
+const db = require("../../models");
 
 router.post('/', (req, res) => {
   console.log("user signup");
@@ -18,11 +19,28 @@ router.post('/', (req, res) => {
     } else {
       const newUser = new User({
         username: username,
-        password: password
+        password: password,
       });
       newUser.save((err, savedUser) => {
         if (err) return res.json(err);
+        db.Profile.create({
+          name: "",
+          email: "",
+          phone: "000-000-0000",
+          inputCity: "",
+          inputState: "",
+          inputZip: "",
+          time: ""
+        })
+          .then(function (dbProfile) {
+            return db.User.findOneAndUpdate({ _id: savedUser._id }, { profile: dbProfile._id }, { new: true });
+          })
+          .catch( function (err){
+            console.log(err);
+          })
+          console.log("Hello", savedUser);
         res.json(savedUser);
+      
       });
     }
   });
@@ -30,7 +48,7 @@ router.post('/', (req, res) => {
 
 router.post(
   "/login",
-  function(req, res, next) {
+  function (req, res, next) {
     console.log("routes/user.js, login, req.body: ");
 
     console.log(req.body);
@@ -40,7 +58,8 @@ router.post(
   (req, res) => {
     console.log("logged in", req.user);
     var userInfo = {
-      username: req.user.username
+      username: req.user.username,
+      id: req.user._id
     };
     res.send(userInfo);
   }

@@ -48,7 +48,8 @@ class Dasboard extends Component {
               HelpHub
             </h1>
             <div className="ml-auto">
-            <h4>Hello {this.username}!</h4>
+
+            <h4 className="d-inline">Hello {this.username}!  </h4>
               <Link to="/profile" className="link">
                 <h4 className="links d-inline">Profile </h4>
               </Link>
@@ -149,6 +150,7 @@ class Dasboard extends Component {
                     </Row>
                   </div>
                 </div>
+                <br /><br />
               </Col>
             </Row>
           </Container>
