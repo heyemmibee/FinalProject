@@ -52,6 +52,7 @@ time: {
   ref: "profileTime"
 
 },
+
 interests1: {
   type: String,
   trim: true,

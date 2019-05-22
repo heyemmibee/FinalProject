@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./profilePage.css";
 import { Container, Row, Col, Nav } from "react-bootstrap";
-
 import { Link, Redirect } from "react-router-dom"
+
 import axios from 'axios';
 
 class ProfilePage extends Component {
@@ -108,6 +108,7 @@ class ProfilePage extends Component {
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />;
         }
+
         return (
 
             <div>
@@ -150,6 +151,7 @@ class ProfilePage extends Component {
                                 <div className="form-group">
                                     <label for="Phone" className="input">Phone Number</label>
                                     <input type="phone" className="form-control" id="phone" placeholder="202-555-5555" value={this.state.profiles.phone} onChange={this.handleInputChange} />
+
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
@@ -217,6 +219,7 @@ class ProfilePage extends Component {
                                     <div className="form-group col-md-2">
                                         <label for="inputZip" className="input">Zip</label>
                                         <input type="text" className="form-control" id="inputZip" placeholder="22201" value={this.state.profiles.inputZip} onChange={this.handleInputChange} />
+
                                     </div>
                                 </div>
                                 <div className="form-group">
@@ -373,8 +376,6 @@ class ProfilePage extends Component {
                     <br /><br />
                     <Row>
                         <Col></Col>
-                        
-
                     </Row>
                     <br /> <br /> <br /> <br />
                 </Container >
