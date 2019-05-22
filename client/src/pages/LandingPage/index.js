@@ -48,6 +48,7 @@ function LandingPage() {
                         <Link to="/login" className> <img alt="volunteers" src="./images/button(1).png"/></Link>
                     </Col>
                 </Row>
+                <br /><br />
             </Container>
         </div>
     )
