@@ -29,7 +29,6 @@ class Dasboard extends Component {
     }
   }
 
-
   render() {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
@@ -48,8 +47,7 @@ class Dasboard extends Component {
               HelpHub
             </h1>
             <div className="ml-auto">
-
-            <h4 className="d-inline">Hello {this.username}!  </h4>
+              <h4 className="d-inline">Hello {this.username}! </h4>
               <Link to="/profile" className="link">
                 <h4 className="links d-inline">Profile </h4>
               </Link>
@@ -58,11 +56,14 @@ class Dasboard extends Component {
               </Link>
             </div>
           </Nav>
-          <br></br>
+          <br />
           <Container>
             <Row>
-            <CalendarApp/>
+              <Col>
+                <CalendarApp />
+              </Col>
             </Row>
+            <br />
             <Row>
               <Col>
                 <ChatApp username={this.username} />
@@ -150,7 +151,8 @@ class Dasboard extends Component {
                     </Row>
                   </div>
                 </div>
-                <br /><br />
+                <br />
+                <br />
               </Col>
             </Row>
           </Container>
