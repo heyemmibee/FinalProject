@@ -364,7 +364,7 @@ class ProfilePage extends Component {
                                         </div>
                                     </Col>
                                     <Col></Col>
-                                    <Col></Col>
+                                    <Col><img id="submit" src="./images/submit.png" onClick={this.profileSubmit} /></Col>
                                 </Row>
                                 {/* </Col> */}
                             </form>
@@ -373,7 +373,7 @@ class ProfilePage extends Component {
                     <br /><br />
                     <Row>
                         <Col></Col>
-                        <Col><img id="submit" src="./images/submit.png" onClick={this.profileSubmit} /></Col>
+                        
 
                     </Row>
                     <br /> <br /> <br /> <br />
