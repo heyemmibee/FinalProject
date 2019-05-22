@@ -40,7 +40,9 @@ profileSubmit = () => {
         inputCity: inputCity,
         inputState: inputState,
         inputZip: inputZip,
-        time: time
+        time: time,
+        interests: this.state.interests,
+        skills: this.state.skills
     }
         console.log(obj);
         axios
