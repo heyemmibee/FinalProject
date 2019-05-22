@@ -3,7 +3,12 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 // import timeGridPlugin from '@fullcalendar/timegrid'
 // import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
-// import 'main.scss'
+
+{/* <link href='client/node_modules/@fullcalendar/core/main.css' rel='stylesheet'> </link>
+<link href='client/node_modules/@fullcalendar/daygrid/main.css' rel='stylesheet'> </link> */}
+
+require('../../../node_modules/@fullcalendar/core/main.css')
+require('../../../node_modules/@fullcalendar/daygrid/main.css')
 
 class CalendarApp extends React.Component {
 
@@ -46,14 +51,23 @@ class CalendarApp extends React.Component {
   render() {
     return (
       <div className="card text-center">
-        <div className="card-header">Schedule of Events</div>
+        <div className="card-header"></div>
+        <div className="card-body calendar-card-body">
         <FullCalendar 
         defaultView="dayGridMonth"
         firstday = '1'
         locale = 'en'
         header={{
-        center: 'title',
-        right: 'dayGridMonth'
+          left:   'title',
+          center: 'Schedule of Events',
+          right:  'today prev,next'
+        }}
+        buttonText = {{
+          today:    'today',
+          month:    'month',
+          week:     'week',
+          day:      'day',
+          list:     'list'
         }}
             plugins={[ dayGridPlugin ]}
             ref={ this.calendarComponentRef }
@@ -61,6 +75,7 @@ class CalendarApp extends React.Component {
             events={ this.state.calendarEvents }
             dateClick={ this.handleDateClick }
             />
+            </div>
       </div>
     );
   }

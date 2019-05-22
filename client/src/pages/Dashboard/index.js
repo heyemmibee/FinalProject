@@ -63,13 +63,13 @@ class Dasboard extends Component {
                 <CalendarApp />
               </Col>
             </Row>
-            <br />
+            <br /> <br />
             <Row>
               <Col>
                 <ChatApp username={this.username} />
               </Col>
             </Row>
-            <br />
+            <br /> <br />
 
             <Row>
               <Col>
