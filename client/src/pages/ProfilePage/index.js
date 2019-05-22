@@ -85,6 +85,32 @@ handleInputChange = event => {
     //     .then(res => this.setState({ profiles: res.data }))
     //     .catch(err => console.log(err));
     };
+
+    logout(event) {
+        event.preventDefault()
+        console.log('logging out')
+        axios.post('/user/logout').then(response => {
+          console.log("hello" + response.data)
+          if (response.status === 200) {
+            this.props.updateUser({
+              loggedIn: false,
+              username: null,
+              id: null
+            })
+            this.setState({
+              redirectTo: '/login'
+          })
+          }
+        }).catch(error => {
+            console.log('Logout error')
+            console.log(error)
+        })
+      };
+
+      updateUser(userObject) {
+        this.setState(userObject);
+      };
+      
     render() {
         if (this.state.redirectTo) {
         return <Redirect to={{ pathname: this.state.redirectTo }} />;
@@ -92,12 +118,12 @@ handleInputChange = event => {
         return (
 
             <div>
-                <Nav className="navbar">
+                <Nav className="navbar" updateUser={this.updateUser} loggedIn={this.state.loggedIn}>
                     <h1 id="navTitle" ><img src="./images/hands2.png" width="45" height="45" className="d-inline-block align-top" alt="" />  HelpHub</h1>
                     <div className="ml-auto">
                     <h4 className="d-inline">Hello {this.props.username}!  </h4>
                         <Link className="link" to="/dashboard"><h4 className="links d-inline">Dashboard  </h4></Link>
-                        <Link className="link" to="/login"><h4 className="links d-inline">|  Logout</h4></Link>
+                        <Link className="link" to="/login"><h4 className="links d-inline" onClick={this.logout}>| Logout</h4></Link>
                     </div>
                 </Nav>
                 <Container>

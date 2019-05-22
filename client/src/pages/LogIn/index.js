@@ -18,12 +18,7 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSignin = this.handleSignin.bind(this)
   }
-  componentDidMount() {
-    // this.getUser(),
-    this.setState({
-      loggedIn: false
-    })
-}
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
