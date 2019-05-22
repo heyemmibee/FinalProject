@@ -68,6 +68,7 @@ class Dasboard extends Component {
         this.props.updateUser({
           loggedIn: false,
           username: null,
+          id: null
         })
         this.setState({
           redirectTo: '/login'
