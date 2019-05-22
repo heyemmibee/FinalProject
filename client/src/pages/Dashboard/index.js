@@ -3,6 +3,7 @@ import { Container, Row, Col, Nav } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 
 import ChatApp from "../../components/Chat/ChatApp";
+import CalendarApp from "../../components/calendar";
 
 import "./dashboard.css";
 
@@ -46,7 +47,6 @@ class Dasboard extends Component {
               HelpHub
             </h1>
             <div className="ml-auto">
-
             <h4 className="d-inline">Hello {this.username}!  </h4>
               <Link to="/profile" className="link">
                 <h4 className="links d-inline">Profile </h4>
@@ -56,17 +56,23 @@ class Dasboard extends Component {
               </Link>
             </div>
           </Nav>
+
+          <br />
           <Container>
             <Row>
-              <Col />
+              <Col>
+                <CalendarApp />
+              </Col>
             </Row>
+            <br /> <br />
 
             <Row>
               <Col>
                 <ChatApp username={this.username} />
               </Col>
             </Row>
-            <br />
+
+            <br /> <br />
 
             <Row>
               <Col>
@@ -148,7 +154,9 @@ class Dasboard extends Component {
                     </Row>
                   </div>
                 </div>
+
                 <br /><br />
+
               </Col>
             </Row>
           </Container>
