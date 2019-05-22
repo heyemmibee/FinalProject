@@ -52,15 +52,35 @@ time: {
   ref: "profileTime"
 
 },
-interests: {
-  type: Object,
+interests1: {
+  type: String,
   trim: true,
-  ref: "interests"
+  ref: "interests1"
 },
-skills: {
-  type: Object,
+interests2: {
+  type: String,
   trim: true,
-  ref: "skills"
+  ref: "interests2"
+},
+interests3: {
+  type: String,
+  trim: true,
+  ref: "interests3"
+},
+skills1: {
+  type: String,
+  trim: true,
+  ref: "skills1"
+},
+skills2: {
+  type: String,
+  trim: true,
+  ref: "skills2"
+},
+skills3: {
+  type: String,
+  trim: true,
+  ref: "skills3"
 },
 
 date: {
