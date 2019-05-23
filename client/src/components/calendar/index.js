@@ -18,8 +18,8 @@ class CalendarApp extends React.Component {
     calendarWeekends: true,
     calendarEvents: [],
     // tooltipOpen: false,
-    title: '',
-    description: '',
+    // title: '',
+    // description: '',
     // toggle: ''
   };
 
@@ -41,6 +41,7 @@ class CalendarApp extends React.Component {
             title: response.data[ii].title,
             start: response.data[ii].start,
             description: response.data[ii].description,
+            location: response.data[ii].location
           };
           newEvents.push(newEvent);
         }
@@ -52,8 +53,11 @@ class CalendarApp extends React.Component {
   }
 
   myEventMouseEnter(event) {
+    console.log(event);
     console.log(event.event._def.title);
     console.log(event.event._def.extendedProps.description);
+    let event_str = "Title : " + event.event._def.title + "\n" + "Description : " + event.event._def.extendedProps.description + "\n" + "Location : " + event.event._def.extendedProps.location;
+    alert(event_str);
   }
 
 
@@ -89,9 +93,9 @@ class CalendarApp extends React.Component {
 
           />
 
-          <p ref='foo' data-tip='tooltip'></p>
+          {/* <p ref='foo' data-tip='tooltip'></p>
           <button onClick={() => { ReactTooltip.show(findDOMNode(this.refs.foo)) }}></button>
-          <ReactTooltip />
+          <ReactTooltip /> */}
 
         </div>
       </div>
