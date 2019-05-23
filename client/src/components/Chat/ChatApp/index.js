@@ -92,14 +92,14 @@ class ChatApp extends React.Component {
 
         <div className="card-body chat-card-body">
           <div className="row h-100">
-            <div className="col-2 users-online-col h-100">
+            <div className="col-4 users-online-col h-100">
               <div className="card text-center h-100">
                 <div className="card-body users-online-card-body h-100">
                   <OnlineUsers onlineUsers={this.state.onlineUsers} />
                 </div>
               </div>
             </div>
-            <div className="col-10 h-100">
+            <div className="col-8 h-100">
               <div className="card h-100">
                 <Messages messages={this.state.messages} />
               </div>
