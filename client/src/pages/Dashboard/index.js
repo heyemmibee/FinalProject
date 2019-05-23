@@ -82,14 +82,14 @@ class Dasboard extends Component {
                   </div>
                   <div className="card-body">
                     <Row>
-                      <Col sm="3">
+                      <Col sm="3" className="blog-card-image">
                         <img src="./images/droid2.png" alt="" />
                       </Col>
-                      <Col sm="9">
+                      <Col sm="9" className="blog-card-text">
                         <h5 className="card-title">
                           {"What's Happening with Droids Today"}
                         </h5>
-                        <p className="card-text">
+                        <p>
                           Alert! Despite the value being discovered in using
                           droids in new ways, as detailed in the previous post,
                           more and more droids are being dismantled by those who
@@ -107,14 +107,14 @@ class Dasboard extends Component {
                       </Col>
                     </Row>
                     <Row>
-                      <Col sm="3">
+                      <Col sm="3" className="blog-card-image">
                         <img src="./images/droid.png" alt="" />
                       </Col>
-                      <Col sm="9">
+                      <Col sm="9" className="blog-card-text">
                         <h5 className="card-title">
                           {"Can Old Droids Learn New Tricks?"}
                         </h5>
-                        <p className="card-text">
+                        <p>
                           Once droids were known for their ability to use
                           holograms to transmit messages that carried detailed
                           information from one place to another, usually
