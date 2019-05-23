@@ -6,7 +6,10 @@ import { Link , Redirect} from "react-router-dom"
 import axios from 'axios';
 
 class ProfilePage extends Component {
-    state = {
+    constructor(props) {
+    super(props)
+
+    this.state = {
         profiles: [],
         interests: {},
         skills: {},
@@ -14,9 +17,39 @@ class ProfilePage extends Component {
         profileId: null
     };
 
+    this.logout = this.logout.bind(this);
+
+    }
     componentDidMount() {
           this.loadProfiles();
+          this.getUser();
     }
+    updateUser(userObject) {
+        this.setState(userObject);
+      }
+    
+      getUser() {
+        axios.get("/user/").then(response => {
+          console.log("Get user response: ");
+          console.log(response.data);
+          if (response.data.user) {
+            console.log("Get User: There is a user saved in the server session: ");
+            console.log(response.data);
+    
+            this.setState({
+              loggedIn: true,
+              username: response.data.user.username,
+              id: response.data.user._id
+            });
+          } else {
+            console.log("Get user: no user");
+            this.setState({
+              loggedIn: false,
+              username: null
+            });
+          }
+        });
+      }
 profileSubmit = () => {
     let name = document.getElementById("name").value;
     console.log(name);
@@ -89,9 +122,9 @@ handleInputChange = event => {
     logout(event) {
         event.preventDefault()
         console.log('logging out')
-        axios.post('/user/logout').then(response => {
-          console.log("hello" + response.data)
-          if (response.status === 200) {
+        // axios.post('/user/logout').then(response => {
+        //   console.log("hello" + response.data)
+        //   if (response.status === 200) {
             this.props.updateUser({
               loggedIn: false,
               username: null,
@@ -100,11 +133,12 @@ handleInputChange = event => {
             this.setState({
               redirectTo: '/login'
           })
-          }
-        }).catch(error => {
-            console.log('Logout error')
-            console.log(error)
-        })
+        //   }
+        // })
+        // .catch(error => {
+        //     console.log('Logout error')
+        //     console.log(error)
+        // })
       };
 
       updateUser(userObject) {
