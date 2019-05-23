@@ -41,6 +41,11 @@ class CalendarApp extends React.Component {
     });
   }
 
+  myEventMouseEnter(event) {
+    console.log(event.event._def.title);
+    console.log(event.event._def.extendedProps.description);
+  }
+
   render() {
     return (
       <div className="card text-center">
@@ -66,13 +71,13 @@ class CalendarApp extends React.Component {
             ref={this.calendarComponentRef}
             weekends={this.state.calendarWeekends}
             events={this.state.calendarEvents}
-            eventMouseEnter={{
+            eventMouseEnter={this.myEventMouseEnter}//{{
               // event: this.newEvent,
               // el: "insert HTML",
               // jsEvent: MouseEvent,
               // view: view,
-          }}
-          eventMouseLeave={{}}
+          //}}
+          //eventMouseLeave={{}}
             // dateClick={this.handleDateClick}
           />
         </div>
