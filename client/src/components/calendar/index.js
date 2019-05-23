@@ -12,7 +12,7 @@ class CalendarApp extends React.Component {
   calendarComponentRef = React.createRef();
   state = {
     calendarWeekends: true,
-    calendarEvents: [],
+    calendarEvents: []
   };
 
   componentDidMount() {
@@ -62,7 +62,7 @@ class CalendarApp extends React.Component {
             //   day: "day",
             //   list: "list"
             // }}
-            plugins={[FullCalendar, dayGridPlugin]}
+            plugins={[dayGridPlugin]}
             ref={this.calendarComponentRef}
             weekends={this.state.calendarWeekends}
             events={this.state.calendarEvents}
