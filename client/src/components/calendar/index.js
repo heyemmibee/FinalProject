@@ -2,23 +2,28 @@ import React from "react";
 import axios from "axios";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+// import { Tooltip } from "react-bootstrap";
+// import { findDOMNode } from 'react-dom'
+// import ReactTooltip from 'react-tooltip'
+// import interactionPlugin from '@fullcalendar/interaction';
 // import timeGridPlugin from '@fullcalendar/timegrid'
-// import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
-
-{
-  /* <link href='client/node_modules/@fullcalendar/core/main.css' rel='stylesheet'> </link>
-<link href='client/node_modules/@fullcalendar/daygrid/main.css' rel='stylesheet'> </link> */
-}
 
 require("../../../node_modules/@fullcalendar/core/main.css");
 require("../../../node_modules/@fullcalendar/daygrid/main.css");
 
 class CalendarApp extends React.Component {
   calendarComponentRef = React.createRef();
+
   state = {
     calendarWeekends: true,
     calendarEvents: []
+    // tooltipOpen: false,
+    // title: '',
+    // description: '',
+    // toggle: ''
   };
+
+  // toggle = this.state.toggle
 
   componentDidMount() {
     this.getEvents();
@@ -34,8 +39,9 @@ class CalendarApp extends React.Component {
         for (let ii = 0; ii < response.data.length; ii++) {
           let newEvent = {
             title: response.data[ii].title,
-            start: new Date(),
-            description: response.data[ii].description
+            start: response.data[ii].start,
+            description: response.data[ii].description,
+            location: response.data[ii].location
           };
           newEvents.push(newEvent);
         }
@@ -46,34 +52,25 @@ class CalendarApp extends React.Component {
     });
   }
 
-  // render() {
-  //   return (
-  //     <div className='app'>
-  //       <div className='app-top'>
-  //         <button onClick={ this.toggleWeekends }>toggle weekends</button>&nbsp;
-  //         <button onClick={ this.gotoPast }>go to a date in the past</button>&nbsp;
-  //         (also, click a date/time to add an event)
-  //       </div>
-  //       <div className='app-calendar'>
-  //         <FullCalendar
-  //           defaultView="dayGridMonth"
-  //           header={{
-  //             left: 'prev,next today',
-  //             center: 'title',
-  //             right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-  //           }}
-  //           plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin ]}
-  //           ref={ this.calendarComponentRef }
-  //           weekends={ this.state.calendarWeekends }
-  //           events={ this.state.calendarEvents }
-  //           dateClick={ this.handleDateClick }
-  //           />
-  //       </div>
-  //     </div>
-  //   )
+  myEventMouseEnter(event) {
+    console.log(event);
+    console.log(event.event._def.title);
+    console.log(event.event._def.extendedProps.description);
+    let event_str = "Title : " + event.event._def.title + "\n" + "Description : " + event.event._def.extendedProps.description + "\n" + "Location : " + event.event._def.extendedProps.location;
+    alert(event_str);
+  }
+
+
+  // toggle(event) {
+  //   this.setState({
+  //     tooltoolOpen: !this.tooltipOpen,
+  //     title : event.event._.title,
+  //     event: event.event._def.extendedProps.description
+  //   })
   // }
 
   render() {
+
     return (
       <div className="card text-center">
         <div className="card-header" />
@@ -87,47 +84,23 @@ class CalendarApp extends React.Component {
               center: "Schedule of Events",
               right: "today prev,next"
             }}
-            buttonText={{
-              today: "today",
-              month: "month",
-              week: "week",
-              day: "day",
-              list: "list"
-            }}
             plugins={[dayGridPlugin]}
             ref={this.calendarComponentRef}
             weekends={this.state.calendarWeekends}
             events={this.state.calendarEvents}
-            dateClick={this.handleDateClick}
+            eventMouseEnter={this.myEventMouseEnter}
+            eventColor={"#0431fa"}
+            eventTextColor={"white"}
+
           />
+
+          {/* <p ref='foo' data-tip='tooltip'></p>
+          <button onClick={() => { ReactTooltip.show(findDOMNode(this.refs.foo)) }}></button>
+          <ReactTooltip /> */}
+
         </div>
       </div>
     );
   }
 }
 export default CalendarApp;
-
-//   toggleWeekends = () => {
-//     this.setState({ // update a property
-//       calendarWeekends: !this.state.calendarWeekends
-//     })
-//   }
-
-//   gotoPast = () => {
-//     let calendarApi = this.calendarComponentRef.current.getApi()
-//     calendarApi.gotoDate('2000-01-01') // call a method on the Calendar object
-//   }
-
-//   handleDateClick = (arg) => {
-//     if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
-//       this.setState({  // add new event data
-//         calendarEvents: this.state.calendarEvents.concat({ // creates a new array
-//           title: 'New Event',
-//           start: arg.date,
-//           allDay: arg.allDay
-//         })
-//       })
-//     }
-//   }
-
-// }
