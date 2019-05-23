@@ -3,8 +3,8 @@ import axios from "axios";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 // import { Tooltip } from "react-bootstrap";
-import { findDOMNode } from 'react-dom'
-import ReactTooltip from 'react-tooltip'
+// import { findDOMNode } from 'react-dom'
+// import ReactTooltip from 'react-tooltip'
 // import interactionPlugin from '@fullcalendar/interaction';
 // import timeGridPlugin from '@fullcalendar/timegrid'
 
@@ -16,14 +16,14 @@ class CalendarApp extends React.Component {
 
   state = {
     calendarWeekends: true,
-    calendarEvents: [],
+    calendarEvents: []
     // tooltipOpen: false,
     // title: '',
     // description: '',
     // toggle: ''
   };
 
-  toggle = this.state.toggle
+  // toggle = this.state.toggle
 
   componentDidMount() {
     this.getEvents();
