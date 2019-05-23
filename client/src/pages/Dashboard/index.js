@@ -56,7 +56,7 @@ class Dasboard extends Component {
               </Link>
             </div>
           </Nav>
-          <br />
+          <br /> <br />
           <Container>
             <Row>
               <Col>
