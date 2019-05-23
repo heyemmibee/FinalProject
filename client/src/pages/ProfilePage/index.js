@@ -114,17 +114,13 @@ handleInputChange = event => {
     loadProfiles = () => {
         console.log(this.props.id);
         axios.get("/profile/profile/" + this.props.id).then(res => this.setState({ profiles: res.data.profile, profileId: res.data.profile._id }))
-    //   API.getProfiles()
-    //     .then(res => this.setState({ profiles: res.data }))
-    //     .catch(err => console.log(err));
+    
     };
 
     logout(event) {
         event.preventDefault()
         console.log('logging out')
-        // axios.post('/user/logout').then(response => {
-        //   console.log("hello" + response.data)
-        //   if (response.status === 200) {
+       
             this.props.updateUser({
               loggedIn: false,
               username: null,
@@ -133,12 +129,7 @@ handleInputChange = event => {
             this.setState({
               redirectTo: '/login'
           })
-        //   }
-        // })
-        // .catch(error => {
-        //     console.log('Logout error')
-        //     console.log(error)
-        // })
+       
       };
 
       updateUser(userObject) {

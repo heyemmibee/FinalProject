@@ -11,7 +11,7 @@ class Dasboard extends Component {
     console.log("Dashboard : constructor");
     super(props);
     this.state = {
-      redirectTo: null,
+      redirectTo: null
     };
     this.username = this.props.username;
     this.loggedIn = this.props.loggedIn;
@@ -61,9 +61,7 @@ class Dasboard extends Component {
   logout(event) {
     event.preventDefault()
     console.log('logging out')
-    // axios.post('/user/logout').then(response => {
-    //   console.log("hello" + response.data)
-    //   if (response.status === 200) {
+   
         this.props.updateUser({
           loggedIn: false,
           username: null,
@@ -72,12 +70,7 @@ class Dasboard extends Component {
         this.setState({
           redirectTo: '/login'
       })
-      // }
-    // })
-    // .catch(error => {
-    //     console.log('Logout error')
-    //     console.log(error)
-    // })
+     
   }
 
 
