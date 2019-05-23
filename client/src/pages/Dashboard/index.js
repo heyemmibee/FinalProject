@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Nav } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
-
+import axios from "axios"
 import ChatApp from "../../components/Chat/ChatApp";
-import CalendarApp from "../../components/calendar";
 
 import "./dashboard.css";
 
@@ -12,10 +11,11 @@ class Dasboard extends Component {
     console.log("Dashboard : constructor");
     super(props);
     this.state = {
-      redirectTo: null
+      redirectTo: null,
     };
     this.username = this.props.username;
     this.loggedIn = this.props.loggedIn;
+    this.logout = this.logout.bind(this);
     console.log("username : " + this.username);
     console.log("loggedIn : " + this.loggedIn);
   }
@@ -29,13 +29,64 @@ class Dasboard extends Component {
     }
   }
 
+  componentDidMount() {
+    this.getUser()
+}
+  updateUser(userObject) {
+    this.setState(userObject);
+  }
+
+  getUser() {
+    axios.get("/user/").then(response => {
+      console.log("Get user response: ");
+      console.log(response.data);
+      if (response.data.user) {
+        console.log("Get User: There is a user saved in the server session: ");
+        console.log(response.data);
+
+        this.setState({
+          loggedIn: true,
+          username: response.data.user.username,
+          id: response.data.user._id
+        });
+      } else {
+        console.log("Get user: no user");
+        this.setState({
+          loggedIn: false,
+          username: null
+        });
+      }
+    });
+  }
+  logout(event) {
+    event.preventDefault()
+    console.log('logging out')
+    axios.post('/user/logout').then(response => {
+      console.log("hello" + response.data)
+      if (response.status === 200) {
+        this.props.updateUser({
+          loggedIn: false,
+          username: null,
+          id: null
+        })
+        this.setState({
+          redirectTo: '/login'
+      })
+      }
+    }).catch(error => {
+        console.log('Logout error')
+        console.log(error)
+    })
+  }
+
+
   render() {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
         <div>
-          <Nav className="navbar">
+          <Nav className="navbar" updateUser={this.updateUser} loggedIn={this.state.loggedIn}>
             <h1 id="navTitle">
               <img
                 src="./images/hands2.png"
@@ -47,32 +98,27 @@ class Dasboard extends Component {
               HelpHub
             </h1>
             <div className="ml-auto">
+
             <h4 className="d-inline">Hello {this.username}!  </h4>
               <Link to="/profile" className="link">
                 <h4 className="links d-inline">Profile </h4>
               </Link>
-              <Link to="/login" className="link">
-                <h4 className="links d-inline">| Logout</h4>
+              <Link className="link" to="/login">
+                <h4 className="links d-inline" onClick={this.logout}>| Logout</h4>
               </Link>
             </div>
           </Nav>
-
-          <br />
           <Container>
             <Row>
-              <Col>
-                <CalendarApp />
-              </Col>
+              <Col />
             </Row>
-            <br /> <br />
 
             <Row>
               <Col>
                 <ChatApp username={this.username} />
               </Col>
             </Row>
-
-            <br /> <br />
+            <br />
 
             <Row>
               <Col>
@@ -154,9 +200,7 @@ class Dasboard extends Component {
                     </Row>
                   </div>
                 </div>
-
                 <br /><br />
-
               </Col>
             </Row>
           </Container>
