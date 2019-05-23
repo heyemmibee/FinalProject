@@ -85,7 +85,8 @@ class CalendarApp extends React.Component {
             weekends={this.state.calendarWeekends}
             events={this.state.calendarEvents}
             eventMouseEnter={this.myEventMouseEnter}
-            eventColor={"#378006"}
+            eventColor={"#0431fa"}
+            eventTextColor={"white"}
 
           />
 
