@@ -2,6 +2,9 @@ import React from "react";
 import axios from "axios";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+// import { Tooltip } from "react-bootstrap";
+import { findDOMNode } from 'react-dom'
+import ReactTooltip from 'react-tooltip'
 // import interactionPlugin from '@fullcalendar/interaction';
 // import timeGridPlugin from '@fullcalendar/timegrid'
 
@@ -10,10 +13,17 @@ require("../../../node_modules/@fullcalendar/daygrid/main.css");
 
 class CalendarApp extends React.Component {
   calendarComponentRef = React.createRef();
+
   state = {
     calendarWeekends: true,
-    calendarEvents: []
+    calendarEvents: [],
+    // tooltipOpen: false,
+    title: '',
+    description: '',
+    // toggle: ''
   };
+
+  toggle = this.state.toggle
 
   componentDidMount() {
     this.getEvents();
@@ -29,8 +39,8 @@ class CalendarApp extends React.Component {
         for (let ii = 0; ii < response.data.length; ii++) {
           let newEvent = {
             title: response.data[ii].title,
-            start: new Date(),
-            description: response.data[ii].description
+            start: response.data[ii].start,
+            description: response.data[ii].description,
           };
           newEvents.push(newEvent);
         }
@@ -46,7 +56,17 @@ class CalendarApp extends React.Component {
     console.log(event.event._def.extendedProps.description);
   }
 
+
+  // toggle(event) {
+  //   this.setState({
+  //     tooltoolOpen: !this.tooltipOpen,
+  //     title : event.event._.title,
+  //     event: event.event._def.extendedProps.description
+  //   })
+  // }
+
   render() {
+
     return (
       <div className="card text-center">
         <div className="card-header" />
@@ -60,34 +80,22 @@ class CalendarApp extends React.Component {
               center: "Schedule of Events",
               right: "today prev,next"
             }}
-            // buttonText={{
-            //   today: "today",
-            //   month: "month",
-            //   week: "week",
-            //   day: "day",
-            //   list: "list"
-            // }}
             plugins={[dayGridPlugin]}
             ref={this.calendarComponentRef}
             weekends={this.state.calendarWeekends}
             events={this.state.calendarEvents}
-            eventMouseEnter={this.myEventMouseEnter}//{{
-              // event: this.newEvent,
-              // el: "insert HTML",
-              // jsEvent: MouseEvent,
-              // view: view,
-          //}}
-          //eventMouseLeave={{}}
-            // dateClick={this.handleDateClick}
+            eventMouseEnter={this.myEventMouseEnter}
+            eventColor={"#378006"}
+
           />
+
+          <p ref='foo' data-tip='tooltip'></p>
+          <button onClick={() => { ReactTooltip.show(findDOMNode(this.refs.foo)) }}></button>
+          <ReactTooltip />
+
         </div>
       </div>
     );
   }
 }
 export default CalendarApp;
-
-// eventMouseout: function(calEvent, jsEvent) {
-//    $(this).css('z-index', 8);
-//    $('.tooltipevent').remove();
-// },
