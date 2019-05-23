@@ -82,7 +82,7 @@ class Dasboard extends Component {
                   </div>
                   <div className="card-body">
                     <Row>
-                      <Col sm="3" className="nlog-card-image">
+                      <Col sm="3" className="blog-card-image">
                         <img src="./images/droid2.png" alt="" />
                       </Col>
                       <Col sm="9" className="blog-card-text">
