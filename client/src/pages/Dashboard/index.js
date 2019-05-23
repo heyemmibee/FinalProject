@@ -47,7 +47,7 @@ class Dasboard extends Component {
               HelpHub
             </h1>
             <div className="ml-auto">
-              <h4 className="d-inline">Hello {this.username}! </h4>
+            <h4 className="d-inline">Hello {this.username}!  </h4>
               <Link to="/profile" className="link">
                 <h4 className="links d-inline">Profile </h4>
               </Link>
@@ -64,11 +64,13 @@ class Dasboard extends Component {
               </Col>
             </Row>
             <br /> <br />
+
             <Row>
               <Col>
                 <ChatApp username={this.username} />
               </Col>
             </Row>
+
             <br /> <br />
 
             <Row>
@@ -151,8 +153,9 @@ class Dasboard extends Component {
                     </Row>
                   </div>
                 </div>
-                <br />
-                <br />
+
+                <br /><br />
+
               </Col>
             </Row>
           </Container>
