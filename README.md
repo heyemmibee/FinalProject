@@ -37,8 +37,15 @@ This application is acessible using the link below, deployment is via Heroku
 No prior software needed to run.
 
 ## Built With
-
-React, React Router, Bootstrap, HTML, CSS, Javascript, Node.js, Express, MongoDB, FullCalendar, socket.io
+* [React](https://reactjs.org/) - Javascript Framework
+* [React Router](https://www.npmjs.com/package/react-router) - Routing for React
+* [Bootstrap](https://getbootstrap.com/docs/3.3/) - Front-end HTML, CSS, javascript framework for creating responsive web applications. 
+* [JavaScript](https://www.javascript.com/) - Programming language.
+* [Node.js](https://nodejs.org/en/) - Javascript Framework
+* [Express.js](https://expressjs.com/) - Node Web framework
+* [MongoDB](https://www.mongodb.com/) - Database Management System
+* [FullCalendar](https://fullcalendar.io/docs/react) - Javascript Calendar
+* [Socket.io](https://socket.io/) - Chat Application
 
 ## Contributing
 
