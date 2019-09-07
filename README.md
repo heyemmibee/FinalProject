@@ -28,7 +28,7 @@ Help Hub is a responsive, mobile ready app that matches non-profits with volunte
 *Blog*
 
 ## Getting Started
-The site should be accessible via the link below via Heroku:
+This application is acessible using the link below, deployment is via Heroku
 
 [Launch Site](https://helphub-demo.herokuapp.com/)
 
